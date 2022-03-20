@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ホーム画面</title>
+</head>
+<body>
+  <div align="center">
+	<h1>Your health</h1>
+	<p>ただ美しいだけでない</p>
+	<p>機能性のある身体へ</p>
+	
+	<div>
+		<form th:action="@{/send}" method="post">
+			<input type="submit" value="study" name="study">
+			<input type="submit" value="movie" name="movie">
+			<input type="submit" value="item" name="item">
+		</form>
+	</div>
+  <div align="center">
+</body>
+</html>

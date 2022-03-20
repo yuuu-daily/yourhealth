@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th ="https://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultrq.net.nz/thymeleaf/layout"
+	  layout:decorator="~{commons/layout}">
+<head>
+<meta charset="UTF-8">
+<title>入力画面</title>
+</head>
+<body>
+
+	<!-- 置き換わる内容 -->
+	<div layout:fragment="content">
+	  <div align="center">
+	  <h1>Sign up</h1>
+		<p>
+			<form th:action="@{/confirm}" method="post">
+				<div>
+					<label for="name">Name:</label>
+					<input type="text" name="name">
+				</div>
+				<div>
+					<label for="email">Email:</label>
+					<input type="email" name="email" min="1" max="16">
+				</div>
+				<div>
+					<label for="password">Password:</label>
+					<input type="text" name="password">
+				</div>
+				<div>
+					<label for="passwordconfirm">Password confirm:</label>
+					<input type="text" name="passwordconfirm">
+				</div>
+				<input type="submit" value="Confirm">
+			</form>
+		</p>
+	  </div>
+	</div>
+		
+</body>
+</html>

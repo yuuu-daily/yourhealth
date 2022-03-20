@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultrq.net.nz/thymeleaf/layout"
+	  layout:decorator="~{commons/layout}">
+<head>
+<meta charset="UTF-8">
+<title>トップ画面</title>
+</head>
+<body>
+	<header th:replace="commons/layout.html :: header"></header>
+	<!-- 置き換わる内容 -->
+	<div layout:fragment="content">
+		<div align="center">
+		<h1>Your health</h1>
+		<p>ただ美しいだけでない機能性のある身体へ</p>
+		<div>
+			<form th:action="@{/send}" method="post">
+				<input type="submit" value="Sign up" name="signup">
+				<input type="submit" value="Log in" name="login">
+			</form>
+		</div>
+		</div>
+	</div>
+	<footer th:replace="commons/layout.html :: footer"></footer>
+</body>
+</html>
