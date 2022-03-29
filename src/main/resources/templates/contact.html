@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th ="https://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultrq.net.nz/thymeleaf/layout"
+	  layout:decorator="~{commons/layout}">
+<head>
+<meta charset="UTF-8">
+<title>Contact</title>
+<link rel="stylesheet" href="/css/style1.css" th:href="@{/css/style1.css}">
+</head>
+<body>
+    <header th:replace="commons/layout.html :: header"></header>
+	<div><h1>Your health</h1></div>
+	<div><h2>お問い合わせ</h2></div>
+	<div>
+	    <form action="confirm.php" method="post" name="form" onsubmit="return validate()">
+	        <h1 class="contact-title">お問い合わせ 内容入力</h1>
+	        <p>お問い合わせ内容をご入力の上、「確認画面へ」ボタンをクリックしてください。</p>
+	        <div>
+	            <div>
+	                <label>お名前<span>必須</span></label>
+	                <input type="text" name="name" placeholder="例）山田太郎" value="">
+	            </div>
+	            <div>
+	                <label>ふりがな<span>必須</span></label>
+	                <input type="text" name="furigana" placeholder="例）やまだたろう" value="">
+	            </div>
+	            <div>
+	                <label>メールアドレス<span>必須</span></label>
+	                <input type="text" name="email" placeholder="例）guest@example.com" value="">
+	            </div>
+	            <div>
+	                <label>お問い合わせ項目<span>必須</span></label>
+	                <select name="item">
+	                    <option value="">お問い合わせ項目を選択してください</option>
+	                    <option value="ご質問・お問い合わせ">ご質問・お問い合わせ</option>
+	                    <option value="ご意見・ご感想">ご意見・ご感想</option>
+	                </select>
+	            </div>
+	            <div>
+	                <label>お問い合わせ内容<span>必須</span></label>
+	                <textarea name="content" rows="5" placeholder="お問合せ内容を入力"></textarea>
+	            </div>
+	        </div>
+	        <button type="submit">確認画面へ</button>
+	    </form>
+	</div>
+	<footer th:replace="commons/layout.html :: footer"></footer>
+</body>
+</html>
