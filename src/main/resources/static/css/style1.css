@@ -1,15 +1,19 @@
 @charset "UTF-8";
+
 html,body{
     height: 100%;
 }
+
 .logo {
 	width: 75px;
 	margin-top: 10px;
 	float:left;
 }
+
 ul {
   list-style: none;
 }
+
 .concept {
 	display: flex;
 	margin-top: 34px;
@@ -36,4 +40,3 @@ footer {
     width: 15%;
     margin: 5px auto;
 }
-
