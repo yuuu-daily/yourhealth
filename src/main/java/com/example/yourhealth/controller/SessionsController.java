@@ -9,7 +9,7 @@ public class SessionsController {
 
     @GetMapping(path = "/login")
     public String index() {
-        return "show";
+        return "/submit/login";
     }
 
     @GetMapping(path = "/login-failure")
