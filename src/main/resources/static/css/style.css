@@ -22,7 +22,7 @@ body {
       #00f3ff60 60%, 
       #00f3ffA0), 
       /* background-image:url(‘../images/icons/topview1.jpg’); */
-      url("/images/icons/topview1.jpg");
+      url("/images/icons/topview3.jpg");
   background-repeat: no-repeat;
   background-position: 50%;
   animation: move 20s infinite both;
