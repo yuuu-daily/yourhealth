@@ -1,0 +1,77 @@
+@charset "UTF-8";
+html,body{
+    height: 100%;
+}
+html {
+	font-size: 100%;
+}
+
+img {
+	max-width:100%;
+}
+
+body {
+  font-family: '筑紫B丸ゴシック', sans-serif;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: 
+    linear-gradient(140deg, 
+      #00f3ffA0, 
+      #0028b960 40%, 
+      #00f3ff60 60%, 
+      #00f3ffA0), 
+      /* background-image:url(‘../images/icons/topview1.jpg’); */
+      url("/images/icons/topview1.jpg");
+  background-repeat: no-repeat;
+  background-position: 50%;
+  animation: move 20s infinite both;
+}
+
+@keyframes move{
+  0% {
+    background-size:100% auto;
+  }
+  50% {
+    background-size:140% auto;
+  }
+  100% {
+    background-size:100% auto;
+  }
+}
+
+.logo {
+	width: 75px;
+	margin-top: 10px;
+	float:left;
+}
+ul {
+  list-style: none;
+}
+.concept {
+	display: flex;
+	margin-top: 34px;
+}
+
+.show-header {
+	display: flex;
+	justify-content: space-between;
+}
+
+footer {
+	position: absolute;/*←絶対位置*/
+    bottom: 0; /*下に固定*/
+    color: #ffffff;
+    width: 100%;
+	padding: 5px;
+	font-size: 0.8rem;
+	text-align: center;
+	background-color: #0a123a;
+}
+
+.foot-wrap .footer-left, .footer-right {
+	display: inline-block;
+    width: 15%;
+    margin: 5px auto;
+}
+

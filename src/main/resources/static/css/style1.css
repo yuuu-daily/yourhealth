@@ -1,0 +1,39 @@
+@charset "UTF-8";
+html,body{
+    height: 100%;
+}
+.logo {
+	width: 75px;
+	margin-top: 10px;
+	float:left;
+}
+ul {
+  list-style: none;
+}
+.concept {
+	display: flex;
+	margin-top: 34px;
+}
+
+.show-header {
+	display: flex;
+	justify-content: space-between;
+}
+
+footer {
+	position: absolute;/*←絶対位置*/
+    bottom: 0; /*下に固定*/
+    color: #ffffff;
+    width: 100%;
+	padding: 10px;
+	font-size: 0.8rem;
+	text-align: center;
+	background-color: #0a123a;
+}
+
+.foot-wrap .footer-left, .footer-right {
+	display: inline-block;
+    width: 15%;
+    margin: 5px auto;
+}
+
