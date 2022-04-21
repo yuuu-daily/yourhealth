@@ -14,7 +14,7 @@
 	  <div align="center">
 	  <h1>Sign up</h1>
 		<p>
-			<form th:action="@{/confirm}" method="post">
+			<form th:action="@{/user}" method="post">
 				<div>
 					<label for="name">Name:</label>
 					<input type="text" name="name">
@@ -28,10 +28,10 @@
 					<input type="text" name="password">
 				</div>
 				<div>
-					<label for="passwordconfirm">Password confirm:</label>
-					<input type="text" name="passwordconfirm">
+					<label for="passwordConfirmation">Password confirm:</label>
+					<input type="text" name="passwordConfirmation">
 				</div>
-				<input type="submit" value="Confirm">
+				<input type="submit" value="Signup">
 			</form>
 		</p>
 	  </div>

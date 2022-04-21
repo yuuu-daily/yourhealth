@@ -18,8 +18,10 @@
 			</font>
 		</p>
 		<div>
-			<form th:action="@{/send}" method="post">
+			<form th:action="@{/signup}" method="get">
 				<input type="submit" value="Sign up" name="signup">
+			</form>
+			<form th:action="@{/login}" method="get">
 				<input type="submit" value="Log in" name="login">
 			</form>
 		</div>

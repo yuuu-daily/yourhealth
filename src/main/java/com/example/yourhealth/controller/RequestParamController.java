@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.yourhealth.form.Form;
-
 @Controller
 public class RequestParamController {
 	
@@ -25,13 +23,8 @@ public class RequestParamController {
 	public String showLoginView() {
 		return "submit/login";
 	}
-
-	@PostMapping("confirm")
-	public String confirmView(Form f) {
-		return "confirm";
-	}
 	
-	@PostMapping("home")
+	@GetMapping("home")
 	public String showhomeView() {
 		return "home";
 	}
@@ -54,6 +47,11 @@ public class RequestParamController {
 	@GetMapping("/privacyPolicy")
 	public String showprivacyPolicyView() {
 		return "privacyPolicy";
+	}
+	
+	@GetMapping("/concept")
+	public String showConceptView() {
+		return "concept";
 	}
 	
     /** contactの確認画面を表示 */
