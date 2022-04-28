@@ -57,6 +57,6 @@ public class UsersController {
         model.addAttribute("class", "alert-info");
         model.addAttribute("message", "ユーザー登録が完了しました。");
         
-        return "users/complete";
+        return "layouts/complete";
     }
 }
