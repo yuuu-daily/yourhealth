@@ -12,26 +12,29 @@
 	<!-- 置き換わる内容 -->
 	<div layout:fragment="content">
 	  <div align="center">
-	  <h1>Sign up</h1>
 		<p>
-			<form th:action="@{/user}" method="post">
-				<div>
-					<label for="name">Name:</label>
-					<input type="text" name="name">
-				</div>
-				<div>
-					<label for="email">Email:</label>
-					<input type="email" name="email" min="1" max="16">
-				</div>
-				<div>
-					<label for="password">Password:</label>
-					<input type="text" name="password">
-				</div>
-				<div>
-					<label for="passwordConfirmation">Password confirm:</label>
-					<input type="text" name="passwordConfirmation">
-				</div>
-				<input type="submit" value="Signup">
+		<form th:action="@{/user}" method="post">
+	      <main class="col-md-4 mx-auto">
+	        <h1 class="text-center text-white">Sign up</h1>
+	        <form method="post" th:action="@{/user}" th:object="${form}">
+	          <div layout:replace="~{layouts/common::messages}"></div>
+	          <div class="mb-3">
+	            <label class="form-label text-white" for="user_name">Name</label>
+	            <input type="text" class="form-control" th:field="*{name}" /><p th:if="${#fields.hasErrors('name')}" class="error-message" th:errors="*{name}"></p>
+	          </div>
+	          <div class="mb-3">
+	            <label class="form-label text-white" for="user_email">Email</label>
+	            <input type="text" class="form-control" th:field="*{email}" /><p th:if="${#fields.hasErrors('email')}" class="error-message" th:errors="*{email}"></p>
+	          </div>
+	          <div class="mb-3">
+	            <label class="form-label text-white" for="user_password">Password</label>
+	            <input class="form-control" type="password" th:field="*{password}" /><p th:if="${#fields.hasErrors('password')}" class="error-message" th:errors="*{password}"></p>
+	          </div>
+	          <div class="mb-3">
+	            <label class="form-label text-white" for="user_password_confirmation">Password confirmation</label>
+	            <input type="password" class="form-control" th:field="*{passwordConfirmation}" /><p th:if="${#fields.hasErrors('passwordConfirmation')}" class="error-message" th:errors="*{passwordConfirmation}"></p>
+	          </div>
+	          <input type="submit" value="Signup" class="btn w-100 btn-outline-light" />
 			</form>
 		</p>
 	  </div>
