@@ -24,6 +24,11 @@ public class RequestParamController {
 		return "submit/login";
 	}
 	
+	@PostMapping(value = "logout-complete", params = "logout")
+	public String showLogoutView() {
+		return "layouts/complete";
+	}
+	
 	@GetMapping("home")
 	public String showhomeView() {
 		return "home";
