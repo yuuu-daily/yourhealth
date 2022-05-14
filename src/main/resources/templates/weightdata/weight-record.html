@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th ="https://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultrq.net.nz/thymeleaf/layout"
+	  layout:decorator="~{commons/layout}">
+<head>
+<meta charset="UTF-8">
+<title>体重記録画面</title>
+<link rel="stylesheet" href="/css/style1.css" th:href="@{/css/style1.css}">
+</head>
+<body>
+	<header th:replace="commons/layout.html :: header"></header>
+	<!-- 置き換わる内容 -->
+	<div layout:fragment="content">
+	  <div align="center">
+	  <h2>体重</h2>
+		<p>
+		<div>
+			<label for="targetWeight">目標体重:</label>kg
+		</div>
+		<div>
+		</div>
+		</p>
+	  </div>
+	</div>
+	<footer th:replace="commons/layout.html :: footer"></footer>
+</body>
+</html>

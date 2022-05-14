@@ -5,27 +5,29 @@
 <head>
 <meta charset="UTF-8">
 <title>体重管理画面</title>
+<link rel="stylesheet" href="/css/style1.css" th:href="@{/css/style1.css}">
 </head>
 <body>
-
+	<header th:replace="commons/layout.html :: header"></header>
 	<!-- 置き換わる内容 -->
 	<div layout:fragment="content">
 	  <div align="center">
-	  <h2>データ</h2>
+	  <h2>体重データ入力</h2>
 		<p>
-			<form th:action="@{/home}" method="get">
+			<form th:action="@{/mydata}" method="get">
 				<div>
 					<label for="targetWeight">目標体重:</label>
 					<input type="text" name="targetWeight">kg
 				</div>
 				<div>
 					<label for="presentWeight">今日の体重:</label>
-					<input type="number" name="presentWeight" min="1", max="100">kg
+					<input type="number" name="presentWeight" min="1", max="120">kg
 				</div>
+				<input type="submit" value="入力" class="btn w-100 btn-outline-dark">
 			</form>
 		</p>
 	  </div>
 	</div>
-		
+	<footer th:replace="commons/layout.html :: footer"></footer>
 </body>
 </html>

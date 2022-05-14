@@ -39,9 +39,9 @@ public class RequestParamController {
 		return "mypage";
 	}
 	
-	@GetMapping("weightdate")
-	public String showWeightdateView() {
-		return "weightdate";
+	@GetMapping("data-record")
+	public String showWeightrecordView() {
+		return "weight-record";
 	}
 	
 	@GetMapping("/contact")
