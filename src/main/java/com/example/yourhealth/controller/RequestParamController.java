@@ -39,9 +39,11 @@ public class RequestParamController {
 		return "mypage";
 	}
 	
+	// toDo データベースからデータをもってくる
 	@GetMapping("data-record")
-	public String showWeightrecordView() {
-		return "weight-record";
+	public String showWeightrecordView(Model model) {
+		model.addAttribute("presentWeight", 1);
+		return "weightdata/weight-record";
 	}
 	
 	@GetMapping("/contact")

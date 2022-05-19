@@ -1,5 +1,7 @@
 package com.example.yourhealth.form;
 
+import java.math.BigDecimal;
+
 import lombok.Data;
 
 @Data
@@ -9,11 +11,17 @@ public class WeightdataForm {
 
     private Long userId;
 
-    private  Double weightData;
-
-    private String path;
+    private BigDecimal weightData;
 
     private UserForm user;
+    
+    public BigDecimal getWeightData() {
+    	 return weightData;
+    }
+    
+    public void setWeightData(BigDecimal weightData) {
+    	 this.weightData = weightData;
+    }
 
 }
 

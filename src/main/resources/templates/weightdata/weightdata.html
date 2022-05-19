@@ -14,14 +14,10 @@
 	  <div align="center">
 	  <h2>体重データ入力</h2>
 		<p>
-			<form th:action="@{/mydata}" method="get">
-				<div>
-					<label for="targetWeight">目標体重:</label>
-					<input type="text" name="targetWeight">kg
-				</div>
+			<form th:action="@{/weightdata}" method="post">
 				<div>
 					<label for="presentWeight">今日の体重:</label>
-					<input type="number" name="presentWeight" min="1", max="120">kg
+					<input type="number" name="weightData" min="1", max="120">kg
 				</div>
 				<input type="submit" value="入力" class="btn w-100 btn-outline-dark">
 			</form>

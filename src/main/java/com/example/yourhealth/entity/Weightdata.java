@@ -1,6 +1,7 @@
 package com.example.yourhealth.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +16,7 @@ import javax.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "weight-histories")
+@Table(name = "weight_histories")
 @Data
 public class Weightdata extends AbstractEntity implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -28,10 +29,18 @@ public class Weightdata extends AbstractEntity implements Serializable {
     @Column(nullable = false)
     private Long userId;
 
-    @Column(nullable = false)
-    private String path;
-
     @ManyToOne
     @JoinColumn(name = "userId", insertable = false, updatable = false)
     private User user;
+    
+    @Column(nullable = false)
+    private BigDecimal weight;
+    
+    
+    public Weightdata(Long id, BigDecimal weight) {
+    	this.userId = id;
+    	this.weight = weight;
+    }
+    
+    
 }
