@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th ="https://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultrq.net.nz/thymeleaf/layout"
+	  layout:decorator="~{commons/layout}">
+<head>
+<meta charset="UTF-8">
+<title>体重記録画面</title>
+<link rel="stylesheet" href="/css/style1.css" th:href="@{/css/style1.css}">
+</head>
+<body>
+	<header th:replace="commons/layout.html :: header"></header>
+	<!-- 置き換わる内容 -->
+	<div layout:fragment="content">
+	  <div align="center">
+	  <h2>体重</h2>
+		<p>
+		<div>
+			<label for="targetWeight">体重:</label><span th:text="${presentWeight}"></span>kg
+		</div>
+		<div>
+		</div>
+		</p>
+	  </div>
+	</div>
+	<div>
+		<canvas id="myChart" width="400" height="400"></canvas>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script>
+	  const labels = [
+	  'January',
+	  'February',
+	  'March',
+	  'April',
+	  'May',
+	  'June',
+	];
+	const data = {
+	  labels: labels,
+	  datasets: [{
+	    label: 'My Weightdata',
+	    backgroundColor: 'rgb(255, 99, 132)',
+	    borderColor: 'rgb(255, 99, 132)',
+	    data: [0, 10, 5, 2, 20, 30, 45],
+	  }]
+	};
+	const config = {
+		  type: 'line',
+		  data: data,
+		  options: {}
+		}
+	  const ctx = document.getElementById('myChart');
+	  const myChart = new Chart(ctx, config);
+	</script>
+	<footer th:replace="commons/layout.html :: footer"></footer>
+</body>
+</html>

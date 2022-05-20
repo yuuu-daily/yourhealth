@@ -8,21 +8,21 @@
 <link rel="stylesheet" href="/css/style1.css" th:href="@{/css/style1.css}">
 </head>
 <body>
-  <header th:replace="commons/layout.html :: header"></header>
+  <header th:replace="commons/login-layout.html :: header"></header>
   <div align="center">
 	<h1>Your health</h1>
 	<p>ただ美しいだけでない</p>
 	<p>機能性のある身体へ</p>
 	
 	<div>
-		<form th:action="@{/logout-complete}" method="post">
-			<input type="submit" value="study" name="study" class="btn w-100 btn-outline-light">
-			<input type="submit" value="movie" name="movie" class="btn w-100 btn-outline-light">
-			<input type="submit" value="item" name="item" class="btn w-100 btn-outline-light">
-			<input type="submit" value="ログアウト" name="logout" th:data-_csrf="${_csrf.token}" class="btn w-100 btn-outline-light">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="study" name="study">
+			<input type="submit" value="movie" name="movie">
+			<input type="submit" value="item" name="item">
+			<input type="submit" value="ログアウト" name="logout" th:data-_csrf="${_csrf.token}">
 		</form>
 	</div>
-  <div align="center">
-  <footer th:replace="commons/layout.html :: footer"></footer>
+  </div>
+  <footer th:replace="commons/login-layout.html :: footer"></footer>
 </body>
 </html>
