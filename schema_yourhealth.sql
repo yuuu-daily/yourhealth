@@ -16,7 +16,7 @@ DROP TABLE IF EXISTS weight_histories CASCADE;
 CREATE TABLE IF NOT EXISTS weight_histories (
   id SERIAL NOT NULL,
   user_id INT NOT NULL,
-  weight DECIMAL(3,1) NOT NULL,
+  weight DECIMAL(4,1) NOT NULL,
   created_at TIMESTAMP NOT NULL,
   updated_at TIMESTAMP NOT NULL,
   PRIMARY KEY (id)

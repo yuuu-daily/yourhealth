@@ -1,6 +1,5 @@
 package com.example.yourhealth.controller;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -13,7 +12,6 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +21,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.yourhealth.entity.UserInf;
@@ -45,18 +42,23 @@ public class WeightdataController {
 	    @Autowired
 	    private HttpServletRequest request;
 
-	    @Value("${image.local:false}")
-	    private String imageLocal;
-
+	    @GetMapping("data-record")
+		public String showWeightrecordView(Model model, Weightdata entity) {
+	        Iterable<Weightdata> weightdata = repository.findAllByOrderByUpdatedAtDesc();
+	        model.addAttribute("weightdata", weightdata);
+			return "weightdata/weight-record";
+		}
+	    
 	    @GetMapping(path = "/weightdata")
 	    public String index(Principal principal, Model model) throws IOException {
 //	        Authentication authentication = (Authentication) principal;
 //	        UserInf user = (UserInf) authentication.getPrincipal();
 //
-//	        Iterable<Weightdata> weightdata = repository.findAllByOrderByUpdatedAtDesc();
+	        Iterable<Weightdata> weightdata = repository.findAllByOrderByUpdatedAtDesc();
 //	        List<WeightdataForm> list = new ArrayList<>();
 //	        for (Weightdata entity : weightdata) {
-//	            WeightdataForm form = getWeightdata(user, entity);
+//	            UserInf user;
+//				WeightdataForm form = getWeightdata(user, entity);
 //	            list.add(form);
 //	        }
 //	        model.addAttribute("list", list);
@@ -78,7 +80,6 @@ public class WeightdataController {
 	    @GetMapping(path = "/weightdata/weightdata-record")
 	    public String newWeightData(Model model) {
 	        model.addAttribute("form", new WeightdataForm());
-//	        model.addAttribute("presentWeight", WeightdataForm.getWeightData());
 	        return "weightdata/weightdata-record";
 	    }
 
@@ -107,22 +108,6 @@ public class WeightdataController {
 	        redirAttrs.addFlashAttribute("message", "登録に成功しました。");
 
 	        return "redirect:/data-record";
-	    }
-
-	    private File saveImageLocal(MultipartFile image, Weightdata entity) throws IOException {
-	        File uploadDir = new File("/uploads");
-	        uploadDir.mkdir();
-
-	        String uploadsDir = "/uploads/";
-	        String realPathToUploads = request.getServletContext().getRealPath(uploadsDir);
-	        if (!new File(realPathToUploads).exists()) {
-	            new File(realPathToUploads).mkdir();
-	        }
-	        String fileName = image.getOriginalFilename();
-	        File destFile = new File(realPathToUploads, fileName);
-	        image.transferTo(destFile);
-
-	        return destFile;
 	    }
 
 }

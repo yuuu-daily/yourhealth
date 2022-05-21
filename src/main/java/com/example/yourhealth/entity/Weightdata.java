@@ -36,11 +36,21 @@ public class Weightdata extends AbstractEntity implements Serializable {
     @Column(nullable = false)
     private BigDecimal weight;
     
+    public Weightdata() {
+        super();
+    }
     
     public Weightdata(Long id, BigDecimal weight) {
     	this.userId = id;
     	this.weight = weight;
     }
     
+    public  Long getId() {
+		return id;
+	}
+	public BigDecimal getWeight() {
+		return weight;
+	}
+	
     
 }
