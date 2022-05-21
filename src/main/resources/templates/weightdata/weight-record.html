@@ -15,9 +15,13 @@
 	  <h2>体重</h2>
 		<p>
 		<div>
-			<label for="targetWeight">体重:</label><span th:text="${presentWeight}"></span>kg
-		</div>
-		<div>
+			<label for="weight">体重:</label>
+			<table>
+			  <tr th:each="detum : ${weightdata}">
+			     <td th:text="${detum.getId()}"></td>
+			     <td th:text="${detum.getWeight()}"></td>
+			  </tr>
+			</table>
 		</div>
 		</p>
 	  </div>
