@@ -47,8 +47,14 @@ public class WeightData extends AbstractEntity implements Serializable {
     	this.weight = weight;
     }
     
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
+    }
     /*
-     *lombok効いていない？？
+     lombok効いていない？？
      */
     // データアクセスのためにゲッターを用意
     public Long getId() {

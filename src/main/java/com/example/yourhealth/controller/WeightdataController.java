@@ -96,12 +96,13 @@ public class WeightDataController {
 	            model.addAttribute("hasMessage", true);
 	            model.addAttribute("class", "alert-danger");
 	            model.addAttribute("message", "登録に失敗しました。");
-	            return "weightData/weightData-record";
+	            return "weightData/weightData";
 	        }
 
 	        Authentication authentication = (Authentication) principal;
 	        UserInf user = (UserInf) authentication.getPrincipal();
 	        Long id = user.getUserId();
+	        // フォームから送信されたデータを受け取ってエンティティに渡す
 	        WeightData entity = new WeightData(id, weight);
 	        
 	       // DBにデータを登録する処理

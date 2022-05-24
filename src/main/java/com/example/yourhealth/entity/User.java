@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,6 +12,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -58,6 +60,16 @@ public class User extends AbstractEntity implements UserDetails, UserInf {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Authority authority;
+    
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<WeightData> weightData;
+    
+    public List<WeightData> getWeightData() {
+        return weightData;
+    }
+    public void setMessages(List<WeightData> weightData) {
+        this.weightData = weightData;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
