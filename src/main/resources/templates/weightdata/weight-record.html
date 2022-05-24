@@ -17,7 +17,7 @@
 		<div>
 			<label for="weight">体重:</label>
 			<table>
-			  <tr th:each="detum : ${weightdata}">
+			  <tr th:each="detum : ${weightData}">
 			     <td th:text="${detum.getId()}"></td>
 			     <td th:text="${detum.getWeight()}"></td>
 			  </tr>

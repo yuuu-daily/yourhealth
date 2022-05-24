@@ -4,8 +4,9 @@ import java.math.BigDecimal;
 
 import lombok.Data;
 
+/* フォームクラス POSTメソッドで送信された<form>タグの中身が入っている */
 @Data
-public class WeightdataForm {
+public class WeightDataForm {
 
     private Long id;
 
