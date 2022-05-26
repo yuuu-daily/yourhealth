@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,6 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.yourhealth.entity.UserInf;
 import com.example.yourhealth.entity.WeightData;
+import com.example.yourhealth.form.UserForm;
 import com.example.yourhealth.form.WeightDataForm;
 import com.example.yourhealth.repository.WeightDataRepository;
 
@@ -43,48 +46,51 @@ public class WeightDataController {
 	    private HttpServletRequest request;
 
 	    @GetMapping("data-record")
-		public String showWeightRecordView(Model model, WeightData entity) {
+		public String showWeightRecordView(Principal principal, Model model) throws IOException {
+	    	Authentication authentication = (Authentication) principal;
+	        UserInf user = (UserInf) authentication.getPrincipal();
+	        
+	        /**  リポジトリのインターフェースを実装 データの全件取得  **/
 	        Iterable<WeightData> weightData = repository.findAllByOrderByUpdatedAtDesc();
-	        model.addAttribute("weightData", weightData);
+	        
+	        // リストを作成し、フォームで入力された{weightData}を要素に追加
+	        List<BigDecimal> list = new ArrayList<>();
+	        for (WeightData entity : weightData) {
+				WeightDataForm form = getWeightData(user, entity);
+	            list.add(form.getWeightData());
+	        }
+	        model.addAttribute("list", list);
+	        
 			return "weightData/weight-record";
 		}
 	    
 	    // 体重入力画面への遷移ハンドリング
 	    @GetMapping(path = "/weightData")
 	    public String index(Principal principal, Model model) throws IOException {
-//	        Authentication authentication = (Authentication) principal;
-//	        UserInf user = (UserInf) authentication.getPrincipal();
-//
-//	        Iterable<WeightData> weightData = repository.findAllByOrderByUpdatedAtDesc();
-//	        List<WeightDataForm> list = new ArrayList<>();
-//	        for (WeightData entity : weightData) {
-//	            UserInf user;
-//				WeightDataForm form = getWeightData(user, entity);
-//	            list.add(form);
-//	        }
-//	        model.addAttribute("list", list);
+	        Authentication authentication = (Authentication) principal;
+	        UserInf user = (UserInf) authentication.getPrincipal();
 
 	        return "weightData/weightData";
 	    }
 	    
-	    
 	    public WeightDataForm getWeightData(UserInf user, WeightData entity) throws FileNotFoundException, IOException {
 	        modelMapper.getConfiguration().setAmbiguityIgnored(true);
-//	        modelMapper.typeMap(WeightData.class, WeightDataForm.class).addMappings(mapper -> mapper.skip(WeightDataForm::setUser));
+	        modelMapper.typeMap(WeightData.class, WeightDataForm.class).addMappings(mapper -> mapper.skip(WeightDataForm::setUser));
 
 	        WeightDataForm form = modelMapper.map(entity, WeightDataForm.class);
-
-//	        UserForm userForm = modelMapper.map(entity.getUser(), UserForm.class);
-//	        form.setUser(userForm);
+	        UserForm userForm = modelMapper.map(entity.getUser(), UserForm.class);
+	        form.setUser(userForm);
 
 	        return form;
 	    }
+	    
 	    // Formクラスのインスタンス化
 	    @GetMapping(path = "/weightData/weightData-record")
 	    public String newWeightData(Model model) {
 	        model.addAttribute("form", new WeightDataForm());
 	        return "weightData/weightData-record";
 	    }
+	    
 	    // 引数でModelクラスのインスタンスを受け取る
 	    @RequestMapping(value = "/weightData", method = RequestMethod.POST)
 	    public String create(Principal principal, @Validated @ModelAttribute("form") WeightDataForm form, BindingResult result,
@@ -105,7 +111,7 @@ public class WeightDataController {
 	        // フォームから送信されたデータを受け取ってエンティティに渡す
 	        WeightData entity = new WeightData(id, weight);
 	        
-	       // DBにデータを登録する処理
+	        // DBにデータを登録する処理
 	        repository.saveAndFlush(entity);
 
 	        redirAttrs.addFlashAttribute("hasMessage", true);

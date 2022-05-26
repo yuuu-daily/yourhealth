@@ -64,5 +64,4 @@ public class WeightData extends AbstractEntity implements Serializable {
 		return weight;
 	}
 	
-    
 }

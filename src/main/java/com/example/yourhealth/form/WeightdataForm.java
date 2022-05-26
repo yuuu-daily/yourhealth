@@ -24,5 +24,10 @@ public class WeightDataForm {
     	 this.weightData = weightData;
     }
 
+	public void setUser(UserForm userForm) {
+		this.user = userForm;
+		
+	}
+
 }
 
