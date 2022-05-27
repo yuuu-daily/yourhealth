@@ -4,8 +4,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
+//import java.sql.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -31,6 +33,9 @@ import com.example.yourhealth.form.UserForm;
 import com.example.yourhealth.form.WeightDataForm;
 import com.example.yourhealth.repository.WeightDataRepository;
 
+import lombok.Data;
+
+@Data
 @Controller
 public class WeightDataController {
 
@@ -44,7 +49,9 @@ public class WeightDataController {
 
 	    @Autowired
 	    private HttpServletRequest request;
-
+	    
+	    /* throws IOException{}がないとエラー出る 
+	     * Principal principalでユーザー情報受取る */
 	    @GetMapping("data-record")
 		public String showWeightRecordView(Principal principal, Model model) throws IOException {
 	    	Authentication authentication = (Authentication) principal;
@@ -54,17 +61,26 @@ public class WeightDataController {
 	        Iterable<WeightData> weightData = repository.findAllByOrderByUpdatedAtDesc();
 	        
 	        // リストを作成し、フォームで入力された{weightData}を要素に追加
-	        List<BigDecimal> list = new ArrayList<>();
+	        //List<BigDecimal> list = new ArrayList<>();
+	        //for (WeightData entity : weightData) {
+	        	// 下の1行いらない
+				//WeightDataForm form = getWeightData(user, entity);
+	            //list.add(entity.getWeight());
+	        //}
+	        //model.addAttribute("list", list);
+	        
+	        // 入力(更新)日時と体重データを紐付けて連想配列作成 
+	        Map<Date, BigDecimal> map = new HashMap<>();
 	        for (WeightData entity : weightData) {
-				WeightDataForm form = getWeightData(user, entity);
-	            list.add(form.getWeightData());
+	            map.put((Date) entity.getCreatedAt(), entity.getWeight());
+	            model.addAttribute("map", map);
 	        }
-	        model.addAttribute("list", list);
 	        
 			return "weightData/weight-record";
 		}
 	    
-	    // 体重入力画面への遷移ハンドリング
+	    
+		// 体重入力画面への遷移ハンドリング
 	    @GetMapping(path = "/weightData")
 	    public String index(Principal principal, Model model) throws IOException {
 	        Authentication authentication = (Authentication) principal;
@@ -72,7 +88,7 @@ public class WeightDataController {
 
 	        return "weightData/weightData";
 	    }
-	    
+	    // getWeiightData()メソッドの定義 エンティティから受け取ったデータをマッピング
 	    public WeightDataForm getWeightData(UserInf user, WeightData entity) throws FileNotFoundException, IOException {
 	        modelMapper.getConfiguration().setAmbiguityIgnored(true);
 	        modelMapper.typeMap(WeightData.class, WeightDataForm.class).addMappings(mapper -> mapper.skip(WeightDataForm::setUser));
