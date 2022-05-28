@@ -25,7 +25,7 @@ public class UsersController {
 
     @Autowired
     private UserRepository repository;
-
+    
     @GetMapping(path = "/signup")
     public String newUser(Model model) {
         model.addAttribute("form", new UserForm());

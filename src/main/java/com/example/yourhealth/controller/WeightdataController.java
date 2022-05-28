@@ -4,6 +4,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.security.Principal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -24,67 +28,91 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.yourhealth.entity.UserInf;
-import com.example.yourhealth.entity.Weightdata;
-import com.example.yourhealth.form.WeightdataForm;
-import com.example.yourhealth.repository.WeightdataRepository;
+import com.example.yourhealth.entity.WeightData;
+import com.example.yourhealth.form.UserForm;
+import com.example.yourhealth.form.WeightDataForm;
+import com.example.yourhealth.repository.WeightDataRepository;
 
+import lombok.Data;
+
+@Data
 @Controller
-public class WeightdataController {
+public class WeightDataController {
 
-	    protected static Logger log = LoggerFactory.getLogger(WeightdataController.class);
+	    protected static Logger log = LoggerFactory.getLogger(WeightDataController.class);
 
 	    @Autowired
 	    private ModelMapper modelMapper;
 
 	    @Autowired
-	    private WeightdataRepository repository;
+	    private WeightDataRepository repository;
 
 	    @Autowired
 	    private HttpServletRequest request;
-
+	    
+	    /* throws IOException{}がないとエラー出る 
+	     * Principal principalでユーザー情報受取る */
 	    @GetMapping("data-record")
-		public String showWeightrecordView(Model model, Weightdata entity) {
-	        Iterable<Weightdata> weightdata = repository.findAllByOrderByUpdatedAtDesc();
-	        model.addAttribute("weightdata", weightdata);
-			return "weightdata/weight-record";
+		public String showWeightRecordView(Principal principal, Model model) throws IOException {
+	    	Authentication authentication = (Authentication) principal;
+	        UserInf user = (UserInf) authentication.getPrincipal();
+	        
+	        /**  リポジトリのインターフェースを実装 データの全件取得  **/
+	        Iterable<WeightData> weightData = repository.findAllByOrderByUpdatedAtAsc();
+	        
+	        // リストを作成し、フォームで入力された{weightData}を要素に追加
+	        //List<BigDecimal> list = new ArrayList<>();
+	        //for (WeightData entity : weightData) {
+	        	// 下の1行いらない
+				//WeightDataForm form = getWeightData(user, entity);
+	            //list.add(entity.getWeight());
+	        //}
+	        //model.addAttribute("list", list);
+	        
+	        // 入力(更新)日時と体重データを紐付けて連想配列作成 
+	        Map<String, BigDecimal> map = new LinkedHashMap<>();
+	        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+			
+	        for (WeightData entity : weightData) {
+	        	String dateToStr = dateFormat.format(entity.getCreatedAt());
+	            map.put(dateToStr, entity.getWeight());
+	            model.addAttribute("map", map);
+	        }
+	        
+			return "weightData/weight-record";
 		}
 	    
-	    @GetMapping(path = "/weightdata")
+	    
+		// 体重入力画面への遷移ハンドリング
+	    @GetMapping(path = "/weightData")
 	    public String index(Principal principal, Model model) throws IOException {
-//	        Authentication authentication = (Authentication) principal;
-//	        UserInf user = (UserInf) authentication.getPrincipal();
-//
-	        Iterable<Weightdata> weightdata = repository.findAllByOrderByUpdatedAtDesc();
-//	        List<WeightdataForm> list = new ArrayList<>();
-//	        for (Weightdata entity : weightdata) {
-//	            UserInf user;
-//				WeightdataForm form = getWeightdata(user, entity);
-//	            list.add(form);
-//	        }
-//	        model.addAttribute("list", list);
+	        Authentication authentication = (Authentication) principal;
+	        UserInf user = (UserInf) authentication.getPrincipal();
 
-	        return "weightdata/weightdata";
+	        return "weightData/weightData";
 	    }
-
-	    public WeightdataForm getWeightdata(UserInf user, Weightdata entity) throws FileNotFoundException, IOException {
+	    // getWeiightData()メソッドの定義 エンティティから受け取ったデータをマッピング
+	    public WeightDataForm getWeightData(UserInf user, WeightData entity) throws FileNotFoundException, IOException {
 	        modelMapper.getConfiguration().setAmbiguityIgnored(true);
-//	        modelMapper.typeMap(Weightdata.class, WeightdataForm.class).addMappings(mapper -> mapper.skip(WeightdataForm::setUser));
+	        modelMapper.typeMap(WeightData.class, WeightDataForm.class).addMappings(mapper -> mapper.skip(WeightDataForm::setUser));
 
-	        WeightdataForm form = modelMapper.map(entity, WeightdataForm.class);
-
-//	        UserForm userForm = modelMapper.map(entity.getUser(), UserForm.class);
-//	        form.setUser(userForm);
+	        WeightDataForm form = modelMapper.map(entity, WeightDataForm.class);
+	        UserForm userForm = modelMapper.map(entity.getUser(), UserForm.class);
+	        form.setUser(userForm);
 
 	        return form;
 	    }
-	    @GetMapping(path = "/weightdata/weightdata-record")
+	    
+	    // Formクラスのインスタンス化
+	    @GetMapping(path = "/weightData/weightData-record")
 	    public String newWeightData(Model model) {
-	        model.addAttribute("form", new WeightdataForm());
-	        return "weightdata/weightdata-record";
+	        model.addAttribute("form", new WeightDataForm());
+	        return "weightData/weightData-record";
 	    }
-
-	    @RequestMapping(value = "/weightdata", method = RequestMethod.POST)
-	    public String create(Principal principal, @Validated @ModelAttribute("form") WeightdataForm form, BindingResult result,
+	    
+	    // 引数でModelクラスのインスタンスを受け取る
+	    @RequestMapping(value = "/weightData", method = RequestMethod.POST)
+	    public String create(Principal principal, @Validated @ModelAttribute("form") WeightDataForm form, BindingResult result,
 	            Model model, RedirectAttributes redirAttrs)
 	            throws IOException {
 	    	BigDecimal weight = form.getWeightData();
@@ -93,20 +121,23 @@ public class WeightdataController {
 	            model.addAttribute("hasMessage", true);
 	            model.addAttribute("class", "alert-danger");
 	            model.addAttribute("message", "登録に失敗しました。");
-	            return "weightdata/weightdata-record";
+	            return "weightData/weightData";
 	        }
 
 	        Authentication authentication = (Authentication) principal;
 	        UserInf user = (UserInf) authentication.getPrincipal();
 	        Long id = user.getUserId();
-	        Weightdata entity = new Weightdata(id, weight);
-	       
+	        // フォームから送信されたデータを受け取ってエンティティに渡す
+	        WeightData entity = new WeightData(id, weight);
+	        
+	        // DBにデータを登録する処理
 	        repository.saveAndFlush(entity);
 
 	        redirAttrs.addFlashAttribute("hasMessage", true);
 	        redirAttrs.addFlashAttribute("class", "alert-info");
 	        redirAttrs.addFlashAttribute("message", "登録に成功しました。");
-
+	        
+	        // 体重管理画面の表示へリダイレクト
 	        return "redirect:/data-record";
 	    }
 

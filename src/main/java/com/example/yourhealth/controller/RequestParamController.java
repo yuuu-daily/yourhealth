@@ -19,11 +19,6 @@ public class RequestParamController {
 		return "submit/signup";
 	}
 	
-	@PostMapping(value = "send", params = "login")
-	public String showLoginView() {
-		return "submit/login";
-	}
-	
 	@PostMapping(value = "logout-complete", params = "logout")
 	public String showLogoutView() {
 		return "layouts/complete";

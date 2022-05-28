@@ -15,15 +15,16 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
+/* エンティティ  DBとのやり取りを担う */
 @Entity
 @Table(name = "weight_histories")
 @Data
-public class Weightdata extends AbstractEntity implements Serializable {
+public class WeightData extends AbstractEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @SequenceGenerator(name = "weightdata_id_seq")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "weightData_id_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)// 値を自動生成するアノテーション
     private Long id;
 
     @Column(nullable = false)
@@ -36,21 +37,31 @@ public class Weightdata extends AbstractEntity implements Serializable {
     @Column(nullable = false)
     private BigDecimal weight;
     
-    public Weightdata() {
+    // デフォルトコンストラクタ
+    public WeightData() {
         super();
     }
-    
-    public Weightdata(Long id, BigDecimal weight) {
+    // DBから受け取ったデータを変数にセット
+    public WeightData(Long id, BigDecimal weight) {
     	this.userId = id;
     	this.weight = weight;
     }
     
-    public  Long getId() {
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
+    }
+    /*
+     lombok効いていない？？
+     */
+    // データアクセスのためにゲッターを用意
+    public Long getId() {
 		return id;
 	}
 	public BigDecimal getWeight() {
 		return weight;
 	}
 	
-    
 }

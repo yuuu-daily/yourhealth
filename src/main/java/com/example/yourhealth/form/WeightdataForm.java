@@ -4,8 +4,9 @@ import java.math.BigDecimal;
 
 import lombok.Data;
 
+/* フォームクラス POSTメソッドで送信された<form>タグの中身が入っている */
 @Data
-public class WeightdataForm {
+public class WeightDataForm {
 
     private Long id;
 
@@ -22,6 +23,11 @@ public class WeightdataForm {
     public void setWeightData(BigDecimal weightData) {
     	 this.weightData = weightData;
     }
+
+	public void setUser(UserForm userForm) {
+		this.user = userForm;
+		
+	}
 
 }
 
