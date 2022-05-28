@@ -11,5 +11,5 @@ import com.example.yourhealth.entity.WeightData;
 @Repository
 public interface WeightDataRepository extends JpaRepository<WeightData, Long> {
 
-    Iterable<WeightData> findAllByOrderByUpdatedAtDesc();
+    Iterable<WeightData> findAllByOrderByUpdatedAtAsc();
 }

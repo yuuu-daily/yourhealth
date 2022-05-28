@@ -29,4 +29,6 @@ public class AbstractEntity {
     public void onPreUpdate() {
         setUpdatedAt(new Date());
     }
+    
+    
 }

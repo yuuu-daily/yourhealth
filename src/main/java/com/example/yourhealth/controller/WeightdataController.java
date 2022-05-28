@@ -4,9 +4,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.security.Principal;
-import java.util.Date;
-//import java.sql.Date;
-import java.util.HashMap;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -58,7 +58,7 @@ public class WeightDataController {
 	        UserInf user = (UserInf) authentication.getPrincipal();
 	        
 	        /**  リポジトリのインターフェースを実装 データの全件取得  **/
-	        Iterable<WeightData> weightData = repository.findAllByOrderByUpdatedAtDesc();
+	        Iterable<WeightData> weightData = repository.findAllByOrderByUpdatedAtAsc();
 	        
 	        // リストを作成し、フォームで入力された{weightData}を要素に追加
 	        //List<BigDecimal> list = new ArrayList<>();
@@ -70,9 +70,12 @@ public class WeightDataController {
 	        //model.addAttribute("list", list);
 	        
 	        // 入力(更新)日時と体重データを紐付けて連想配列作成 
-	        Map<Date, BigDecimal> map = new HashMap<>();
+	        Map<String, BigDecimal> map = new LinkedHashMap<>();
+	        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+			
 	        for (WeightData entity : weightData) {
-	            map.put((Date) entity.getCreatedAt(), entity.getWeight());
+	        	String dateToStr = dateFormat.format(entity.getCreatedAt());
+	            map.put(dateToStr, entity.getWeight());
 	            model.addAttribute("map", map);
 	        }
 	        
