@@ -23,7 +23,7 @@
 	</div>
 	<script th:inline="javascript">
 		const map = new Map(Object.entries(/*[[${map}]]*/));
-    	console.log(map);
+    	// console.log(map);
     	// 全日付の取得後、配列化
     	var ceatedDate = [];
     	var createdDate = map.keys();
@@ -38,12 +38,15 @@
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<script>
       const data = {
+      // labels: createdDate.toArray(),
       labels: Array.from(createdDate),
       datasets: [{
       label: 'My Weightdata',
       backgroundColor: 'rgb(255, 99, 132)',
       borderColor: 'rgb(255, 99, 132)',
+      //data: weightData.toArray(),
       data: Array.from(weightData),
+      
       }]
   	  }; 
 	
