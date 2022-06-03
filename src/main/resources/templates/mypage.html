@@ -1,41 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:th ="https://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultrq.net.nz/thymeleaf/layout"
-	  layout:decorator="~{commons/layout}">
+	  layout:decorate="~{layouts/layout}">
 <head>
-<meta charset="UTF-8">
 <title>マイページ画面</title>
 </head>
 <body>
-
-	<!-- 置き換わる内容 -->
-	<div layout:fragment="content">
-	  <div align="center">
-	  <h2>マイページ</h2>
-		<p>
-			<form th:action="@{/home}" method="get">
-				<div>
-					<label for="name">Name:</label>
-					<input type="text" name="name">
-					<input type="submit" value="Name変更">
-				</div>
-				<div>
-					<label for="email">Email:</label>
-					<input type="email" name="email" min="1" max="16">
-					<input type="submit" value="Email変更">
-				</div>
-				<div>
-					<label for="password">Password:</label>
-					<input type="text" name="password">
-					<input type="submit" value="Password変更">
-				</div>
-				<div>
-					<input type="submit" value="Log out">
-				</div>
-			</form>
-		</p>
-	  </div>
-	</div>
-		
+  <div class="mypage-wrapper" layout:fragment="contents">
+  <div class="container">
+    <div class="row">
+      <main class="col-md-4 mx-auto">
+      <h2 class="text-center text-black">マイページ</h2>
+		<form th:action="@{/mypage}" method="post">
+			<div class="mb-2">
+				<label class="form-label text-black" for="session_name">Name</label>
+				<input class="form-control" type="text" name="username" id="session_username" />
+			</div>
+			<div class="mb-2">
+				<label class="form-label text-black" for="session_email">Email</label>
+				<input class="form-control" type="text" name="email" id="session_email" />
+			</div>
+			<div class="mb-2">
+				<label class="form-label text-black" for="sessin_password">Password</label>
+				<input class="form-control" type="text" name="password" id="session_password" />
+			</div>
+			<input type="submit" value="設定変更" class="btn w-100 btn-outline-dark" />
+		</form>
+		<form th:action="@{/data-record}" method="post">
+			<div class="mb-2">
+				<label class="form-label text-black" for="targetWeight">目標体重</label>
+				<input class="form-control" type="number" style="text-align: right;" step="0.1" name="targetWeight">
+			</div>
+			<input type="submit" value="変更" class="btn w-100 btn-outline-dark" />
+		</form>
+      </main>
+    </div>
+    </div>
+  </div>
+  </div>	
 </body>
 </html>

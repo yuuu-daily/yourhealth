@@ -1,63 +1,193 @@
 <!DOCTYPE html>
 <html xmlns:th ="https://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultrq.net.nz/thymeleaf/layout"
-	  layout:decorator="~{commons/layout}">
+	  layout:decorates="~{layouts/layout}">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>体重記録画面</title>
-<link rel="stylesheet" href="/css/style1.css" th:href="@{/css/style1.css}">
 </head>
 <body>
-	<header th:replace="commons/layout.html :: header"></header>
-	<!-- 置き換わる内容 -->
-	<div layout:fragment="content">
-	  <div align="center">
-	  <h2>体重</h2>
-		<p>
-		<div>
-			<label for="weight">体重:</label>
-			<!-- <p th:text="${map}"></p> -->
-		</div>
-		</p>
+<div layout:fragment="contents">
+	<div class="weight-records-index-wrapper">
+	<!-- グラフのセクション -->
+	<section class="full-weightGraph">
+      <div class="flex-center">
+        <div class="inner target-weight-container">
+	      <h2>目標体重</h2>
+			<div>
+				<p th:text="${targetWeight}"></p>
+				<!-- <p th:text="${map}"></p> -->
+			</div>
+	    </div>
 	  </div>
-	</div>
-	<script th:inline="javascript">
-		const map = new Map(Object.entries(/*[[${map}]]*/));
-    	// console.log(map);
-    	// 全日付の取得後、配列化
-    	var ceatedDate = [];
-    	var createdDate = map.keys();
-    	console.log(createdDate);
-    	// 全体重データの取得後、配列化
-    	var weightData = [];
-    	var weightData = map.values();
-    </script>
-	<div>
-		<canvas id="myChart" width="100" height="100"></canvas>
-	</div>
-	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-	<script>
-      const data = {
-      // labels: createdDate.toArray(),
-      labels: Array.from(createdDate),
-      datasets: [{
-      label: 'My Weightdata',
-      backgroundColor: 'rgb(255, 99, 132)',
-      borderColor: 'rgb(255, 99, 132)',
-      //data: weightData.toArray(),
-      data: Array.from(weightData),
-      
-      }]
-  	  }; 
+	      <div class="chart-container" style="position: relative; height:20vh; width:50vw">
+		      <script th:inline="javascript">
+				const map = new Map(Object.entries(/*[[${map}]]*/));
+		    	// console.log(map);
+		    	// 全日付の取得後、配列化
+		    	var ceatedDate = [];
+		    	var createdDate = map.keys();
+		    	console.log(createdDate);
+		    	// 全体重データの取得後、配列化
+		    	var weightData = [];
+		    	var weightData = map.values();
+	    	  </script>
+			  
+	      	  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	      	  <canvas id="myChart" width="400" height="300"></canvas>
 	
-	  const config = {
-		  type: 'line',
-		  data: data,
-		  options: {}
-	  }
-	  const ctx = document.getElementById('myChart');
-	  const myChart = new Chart(ctx, config);
-	</script>
-	<footer th:replace="commons/layout.html :: footer"></footer>
+			  <script>
+			      const data = {
+			      // labels: createdDate.toArray(),
+			      labels: Array.from(createdDate),
+			      datasets: [{
+			      label: 'My Weightdata',
+			      backgroundColor: 'rgb(255, 99, 132)',
+			      borderColor: 'rgb(255, 99, 132)',
+			      //data: weightData.toArray(),
+			      data: Array.from(weightData),
+			      }]
+			  	  }; 
+				
+				  const config = {
+					  type: 'line',
+					  data: data,
+					  options: {}
+				  };
+				  const ctx = document.getElementById('myChart');
+				  const myChart = new Chart(ctx, config);
+			   </script>
+		   </div><!-- class="chart-container" style="position: relative; height:20vh; width:50vw"の閉じタグ -->
+	
+	</section>
+	</div> <!-- class="weight-records-index-wrapper"の閉じタグ-->
+	
+	<!-- 習慣化チェックシートセクション -->
+	<section class="balance-sheet">
+	  <div class="flex-center">
+        <div class="inner sheet-container">
+	  	<h1>健康習慣(週間)バランスシート</h1>
+	
+	    <p>
+	      <input type="radio" name="check-list" value="food1">良質な食事はできましたか？（糖質が多い炭水化物は極力減らし、良質なアブラを摂ることを心がけることができましたか？）<br>
+    	  <input type="radio" name="check-list" value="food2">タンパク質、食物繊維の豊富な食事を積極的に摂ることができましたか？<br>
+    	  <input type="radio" name="check-list" value="food3">ファーストフード・コンビニ食・揚げ物は控えられましたか？<br>
+    	  <input type="radio" name="check-list" value="food4">水分は1日2L以上摂取することができましたか？<br>
+    	  <input type="radio" name="check-list" value="food5">自然素材の食物を購入し、食事摂取することができましたか？<br>
+    	  <input type="radio" name="check-list" value="exercise1">1週間のうち、3〜5回以上(1回30分以上)適度な負荷をかけた運動をすることができましたか？<br>
+    	  <input type="radio" name="check-list" value="exercise2">有酸素運動(ウォーキング・ジョギング・水泳など)と無酸素運動(筋トレ・短距離走など)を適度に取り入れることができましたか？<br>
+    	  <input type="radio" name="check-list" value="exercise3">座りっぱなしの状態(1時間以上)を控えることができましたか？<br>
+    	  <input type="radio" name="check-list" value="exercise4">正しい呼吸方法はできていますか？<br>
+    	  <input type="radio" name="check-list" value="exercise5">SIT・HIITなどのインターバルトレーニングを取り入れることができましたか？<br>
+    	  <input type="radio" name="check-list" value="sleep1">起きてから3〜4時間後に眠気はありませんでしたか？さわやかに脳が働いていましたか？<br>
+    	  <input type="radio" name="check-list" value="sleep2">寝付きが30分以上かかっていませんでしたか？<br>
+    	  <input type="radio" name="check-list" value="sleep3">寝る時間と起きる時間は一定でしたか？<br>
+    	  <input type="radio" name="check-list" value="sleep4">7〜8時間以上睡眠時間をしっかり確保できましたか？<br>
+    	  <input type="radio" name="check-list" value="sleep5">寝る2時間前からスマホやパソコン、テレビを見るのを控えることができましたか？<br>
+	    </p>
+	    
+	    
+	    <div class="polarArea-chart-container" style="position: relative; height:20vh; width:50vw">
+		      
+		      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		      <canvas id="myChartPolarArea" width="400" height="300"></canvas>
+	      	  
+	      	  <script>
+		      	const DATA_COUNT = 5;
+		      	const NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100};
+	
+		      	const labels = ['Red', 'Orange', 'Yellow', 'Green', 'Blue'];
+		      	const data = {
+		      	  labels: labels,
+		      	  datasets: [
+		      	    {
+		      	      label: 'Dataset 1',
+		      	      data: Utils.numbers(NUMBER_CFG),
+		      	      backgroundColor: [
+		      	        Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
+		      	        Utils.transparentize(Utils.CHART_COLORS.orange, 0.5),
+		      	        Utils.transparentize(Utils.CHART_COLORS.yellow, 0.5),
+		      	        Utils.transparentize(Utils.CHART_COLORS.green, 0.5),
+		      	        Utils.transparentize(Utils.CHART_COLORS.blue, 0.5),
+		      	      ]
+		      	    }
+		      	  ]
+		      	};
+		      	const actions = [
+		      	  {
+		      	    name: 'Randomize',
+		      	    handler(chart) {
+		      	      chart.data.datasets.forEach(dataset => {
+		      	        dataset.data = Utils.numbers({count: chart.data.labels.length, min: 0, max: 100});
+		      	      });
+		      	      chart.update();
+		      	    }
+		      	  },
+		      	  {
+		      	    name: 'Add Data',
+		      	    handler(chart) {
+		      	      const data = chart.data;
+		      	      if (data.datasets.length > 0) {
+		      	        data.labels.push('data #' + (data.labels.length + 1));
+
+		      	        for (let index = 0; index < data.datasets.length; ++index) {
+		      	          data.datasets[index].data.push(Utils.rand(0, 100));
+		      	        }
+
+		      	        chart.update();
+		      	      }
+		      	    }
+		      	  },
+		      	  {
+		      	    name: 'Remove Data',
+		      	    handler(chart) {
+		      	      chart.data.labels.splice(-1, 1); // remove the label first
+
+		      	      chart.data.datasets.forEach(dataset => {
+		      	        dataset.data.pop();
+		      	      });
+
+		      	      chart.update();
+		      	    }
+		      	  }
+		      	];
+		      	const config = {
+	      		  type: 'polarArea',
+	      		  data: data,
+	      		  options: {
+	      		    responsive: true,
+	      		    plugins: {
+	      		      legend: {
+	      		        position: 'top',
+	      		      },
+	      		      title: {
+	      		        display: true,
+	      		        text: 'Chart.js Polar Area Chart'
+	      		      }
+	      		    }
+	      		  },
+	      		};
+		      	const ctx = document.getElementById('myChartPolarArea');
+				const myChartPolarArea = new Chart(ctx, config);
+	      	  </script>
+		</div><!-- class="chart-container" style="position: relative; height:20vh; width:50vw"の閉じタグ -->
+	    </div>
+	  </div>
+	</section>
+	
+	
+	<!-- クイズセクション -->
+	<section class="quiz">
+	  <div class="flex-center">
+        <div class="inner quiz-container">
+	  	<h1>豆知識クイズ</h1>
+	
+	    <p>クイズ</p>
+	    </div>
+	  </div>
+	</secction>
+	
+</div> <!-- layout:fragment="contents"の閉じタグ-->
 </body>
 </html>

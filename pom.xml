@@ -97,6 +97,34 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<plugin>
+			  <groupId>nl.geodienstencentrum.maven</groupId>
+			  <artifactId>sass-maven-plugin</artifactId>
+			  <version>3.7.2</version>
+			  <executions>
+			    <execution>
+			      <id>compile</id>
+			      <phase>prepare-package</phase>
+			      <goals>
+			        <goal>update-stylesheets</goal>
+			      </goals>
+			    </execution>
+			  </executions>
+			  <configuration>
+			    <resources>
+			      <resource>
+			        <source>
+			          <directory>${basedir}/src/main/resources/static/scss</directory>
+			        </source>
+			        <destination>${basedir}/src/main/resources/static/css</destination>
+			      </resource>
+			    </resources>
+			    <sassOptions>
+			      <cache>false</cache>
+			      <always_update>false</always_update>
+			    </sassOptions>
+			  </configuration>
+			</plugin>
 		</plugins>
 	</build>
 

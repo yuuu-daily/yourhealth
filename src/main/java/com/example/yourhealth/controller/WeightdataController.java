@@ -23,8 +23,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.yourhealth.entity.UserInf;
@@ -81,7 +83,11 @@ public class WeightDataController {
 	        
 			return "weightData/weight-record";
 		}
-	    
+	    @PostMapping("/data-record")
+	    public String postMethod(@RequestParam("targetWeight") BigDecimal targetWeight,Model model) {
+	    	model.addAttribute("targetWeight", targetWeight);
+	        return "weightData/weight-record";
+	    }
 	    
 		// 体重入力画面への遷移ハンドリング
 	    @GetMapping(path = "/weightData")
