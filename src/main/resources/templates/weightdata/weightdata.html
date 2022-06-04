@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th ="https://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultrq.net.nz/thymeleaf/layout"
-	  layout:decorator="~{commons/layout}">
+	  layout:decorate="~{layouts/layout}">
 <head>
-<meta charset="UTF-8">
 <title>体重管理画面</title>
-<link rel="stylesheet" href="/css/style1.css" th:href="@{/css/style1.css}">
 </head>
 <body>
-	<header th:replace="commons/layout.html :: header"></header>
-	<!-- 置き換わる内容 -->
-	<div layout:fragment="content">
-	  <div align="center">
-	  <h2>体重データ入力</h2>
-		<p>
+	<div class="weightData-index-wrapper text-center" layout:fragment="contents">
+	<div class="container">
+	  <div class="row p-form-top d-none d-lg-block d-xl-block d-xxl-block"></div>
+	  <div class="row">
+	    <main class="col-md-4 mx-auto">
+	      <h2 class="text-center text-black">体重入力</h2>
 			<form th:action="@{/weightData}" method="post">
-				<div>
-					<label for="presentWeight">今日の体重:</label>
-					<input type="number" name="weightData" min="1", max="120">kg
+				<div class="mb-3">
+					<label for="presentWeight">今日の体重</label>
+					<input class="form-control" type="number" style="text-align: right;" step="0.1" name="weightData" min="1", max="120">kg
 				</div>
-				<input type="submit" value="入力" class="btn w-100 btn-outline-dark">
+				  <input type="submit" value="入力" class="btn w-100 btn-outline-dark" />
 			</form>
-		</p>
+		</main>	
+	  </div>
 	  </div>
 	</div>
-	<footer th:replace="commons/layout.html :: footer"></footer>
+	</div>
+	
 </body>
 </html>

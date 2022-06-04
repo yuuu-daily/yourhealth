@@ -29,7 +29,7 @@ public class UsersController {
     @GetMapping(path = "/signup")
     public String newUser(Model model) {
         model.addAttribute("form", new UserForm());
-        return "submit/signup";
+        return "users/new";
     }
 
     @PostMapping(value = "/user")
@@ -47,7 +47,7 @@ public class UsersController {
         	model.addAttribute("hasMessage", true);
         	model.addAttribute("class", "alert-danger");
         	model.addAttribute("message", "ユーザー登録に失敗しました。");
-            return "submit/signup";
+            return "users/new";
         }
 
         User entity = new User(email, name, passwordEncoder.encode(password), Authority.ROLE_USER);

@@ -3,54 +3,51 @@
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <body>
-  <nav class="navbar navbar-expand-lg fixed-top navbar-dark" layout:fragment="nav">
-    <div class="container">
-      <a class="navbar-brand" th:href="@{/topics}">
-        <img src="/images/icons/logo.png" th:src="@{/images/icons/logo.png}" class="brand">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <th:block sec:authorize="isAuthenticated()">
-            <li class="nav-item">
-              <a class="nav-link" th:href="@{/calendars}">
-                <img src="/images/icons/calendar.png" th:src="@{/images/icons/calendar.png}">
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" th:href="@{/favorites}">
-                <img src="/images/icons/heart.png" th:src="@{/images/icons/heart.png}">
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" th:href="@{/topics/new}">
-                <img src="/images/icons/camera.png" th:src="@{/images/icons/camera.png}">
-              </a>
-            </li>
-            <li class="nav-item">
-              <a th:href="@{/logout}" class="nav-link convert" data-method="post" th:data-_csrf="${_csrf.token}">
-                <img src="/images/icons/logout.png" th:src="@{/images/icons/logout.png}" alt="ログアウト">
-              </a>
-            </li>
-          </th:block>
-          <th:block sec:authorize="!isAuthenticated()"></th:block>
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/users/new}">
-              <img src="/images/icons/register.png" th:src="@{/images/icons/register.png}" alt="ユーザ登録">
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/login}">
-              <img src="/images/icons/login.png" th:src="@{/images/icons/login.png}" alt="ログイン">
-            </a>
-          </li>
-          </th:block>
-        </ul>
-      </div>
+  <!-- ナビゲーションバー -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" layout:fragment="nav">
+  <div class="container">
+    <a class="navbar-brand " href="#">Yourhealth</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+      <ul class="navbar-nav mr-auto">　
+        <li class="nav-item">
+          <a class="nav-link" href="/home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <th:block sec:authorize="isAuthenticated()">
+        <li class="nav-item">
+          <a class="nav-link" href="/mypage">My Page</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/weightData">Weight Form</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/data-record">Weight Data</a>
+        </li>
+        <li class="nav-item">
+        <a th:href="@{/logout}" class="nav-link convert" data-method="post" th:data-_csrf="${_csrf.token}">Logout</a>
+        </li>
+        </th:block>
+      </ul>
+
+      <ul class="navbar-nav">
+        <th:block sec:authorize="!isAuthenticated()">
+        <li class="nav-item">
+          <a class="nav-link" href="/signup">Signup</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+        </th:block>
+      </ul>
+
     </div>
+  </div>
   </nav>
   <div id="messages" layout:fragment="messages" th:if="!${#lists.isEmpty(#fields.detailedErrors())}">
     <ul>

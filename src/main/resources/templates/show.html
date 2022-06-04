@@ -1,32 +1,34 @@
 <!DOCTYPE html>
-<html xmlns:th ="http://www.thymeleaf.org"
-	  xmlns:layout="http://www.ultrq.net.nz/thymeleaf/layout"
-	  layout:decorator="~{commons/layout}">
-<head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}">
-<title>トップ画面</title>
-</head>
-<body>
-	<header th:replace="commons/layout.html :: header"></header>
-	<!-- 置き換わる内容 -->
-	<div layout:fragment="content">
-		<div align="center">
-		<h1><font size="120">Your health</font></h2>
-		<p><font size="80">ただ美しいだけでない<br>
-			機能性のある身体へ
-			</font>
-		</p>
-		<div>
-			<form th:action="@{/signup}" method="get">
-				<input type="submit" value="Sign up" name="signup">
-			</form>
-			<form th:action="@{/login}" method="get">
-				<input type="submit" value="Log in" name="login">
-			</form>
-		</div>
-		</div>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+  <head>
+    <title>トップ画面</title>
+  </head>
+  <body>
+	<div class="pages-index-wrapper text-center" layout:fragment="contents">
+	  <div class="container">
+	    <div class="row p-form-top d-none d-lg-block d-xl-block d-xxl-block"></div>
+	    <h1 class="text-black">Your health</h1>
+	    <h2 class="text-black">ただ美しいだけでない<br>
+	         機能性のある身体へ
+	    </h2>
+	    <div class="d-none d-lg-block d-xl-block d-xxl-block">
+	    <div class="row justify-content-center">
+	      <div class="col-3">
+	        <a class="btn w-100 btn-outline-light" href="/signup">Sign up</a>
+	      </div>
+	      <div class="col-3">
+	        <a class="btn w-100 btn-outline-light" href="/login">Log in</a>
+	      </div>
+	    </div>
+	    </div>
+	    <div class="d-block d-lg-none d-xl-none d-xxl-none">
+	      <a class="btn w-100 btn-outline-light mb-3" href="/signup">Sign up</a>
+	      <a class="btn w-100 btn-outline-light" href="/login">Log in</a>
+	    </div>
+	    </div>
+	  </div>
 	</div>
-	<footer th:replace="commons/layout.html :: footer"></footer>
-</body>
+  </body>
 </html>

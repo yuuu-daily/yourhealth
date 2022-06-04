@@ -13,12 +13,7 @@ public class RequestParamController {
 	public String showView() {
 		return "show";
 	}
-	
-	@PostMapping(value = "send", params = "signup")
-	public String showSignupView() {
-		return "submit/signup";
-	}
-	
+
 	@PostMapping(value = "logout-complete", params = "logout")
 	public String showLogoutView() {
 		return "layouts/complete";
@@ -34,17 +29,17 @@ public class RequestParamController {
 		return "mypage";
 	}
 	
-	@GetMapping("/contact")
+	@GetMapping("contact")
 	public String showContactView() {
 		return "contact";
 	}
 	
-	@GetMapping("/privacyPolicy")
+	@GetMapping("privacyPolicy")
 	public String showprivacyPolicyView() {
 		return "privacyPolicy";
 	}
 	
-	@GetMapping("/concept")
+	@GetMapping("concept")
 	public String showConceptView() {
 		return "concept";
 	}
