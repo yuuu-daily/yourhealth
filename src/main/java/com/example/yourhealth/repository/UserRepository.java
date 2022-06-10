@@ -7,6 +7,9 @@ import com.example.yourhealth.entity.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
-
+	
+	User findByUserId(Long id);
+	
     User findByUsername(String username);
+    
 }

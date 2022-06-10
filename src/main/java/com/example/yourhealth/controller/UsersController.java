@@ -1,5 +1,7 @@
 package com.example.yourhealth.controller;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -50,7 +52,7 @@ public class UsersController {
             return "users/new";
         }
 
-        User entity = new User(email, name, passwordEncoder.encode(password), Authority.ROLE_USER);
+		User entity = new User(email, name, passwordEncoder.encode(password), new BigDecimal(0), Authority.ROLE_USER);// (BigDecimal??)
         repository.saveAndFlush(entity);
         
         model.addAttribute("hasMessage", true);

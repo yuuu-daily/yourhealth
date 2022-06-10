@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th ="https://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultrq.net.nz/thymeleaf/layout"
-	  layout:decorates="~{layouts/layout}">
+	  layout:decorate="~{layouts/layout}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -64,129 +64,136 @@
 	</div> <!-- class="weight-records-index-wrapper"の閉じタグ-->
 	
 	<!-- 習慣化チェックシートセクション -->
+	<div class="balance-sheet-index-wrapper">
+	<div class="d-flex flex-row">
 	<section class="balance-sheet">
-	  <div class="flex-center">
-        <div class="inner sheet-container">
-	  	<h1>健康習慣(週間)バランスシート</h1>
-	
+        <div class="d-flex float-start flex-column">
+        <div class="p-2">
+	  	<h2>健康習慣(週間)バランスシート</h2>
+	  	</div>
+	  	<div class="p-2">
 	    <p>
-	      <input type="radio" name="check-list" value="food1">良質な食事はできましたか？（糖質が多い炭水化物は極力減らし、良質なアブラを摂ることを心がけることができましたか？）<br>
-    	  <input type="radio" name="check-list" value="food2">タンパク質、食物繊維の豊富な食事を積極的に摂ることができましたか？<br>
-    	  <input type="radio" name="check-list" value="food3">ファーストフード・コンビニ食・揚げ物は控えられましたか？<br>
-    	  <input type="radio" name="check-list" value="food4">水分は1日2L以上摂取することができましたか？<br>
-    	  <input type="radio" name="check-list" value="food5">自然素材の食物を購入し、食事摂取することができましたか？<br>
-    	  <input type="radio" name="check-list" value="exercise1">1週間のうち、3〜5回以上(1回30分以上)適度な負荷をかけた運動をすることができましたか？<br>
-    	  <input type="radio" name="check-list" value="exercise2">有酸素運動(ウォーキング・ジョギング・水泳など)と無酸素運動(筋トレ・短距離走など)を適度に取り入れることができましたか？<br>
-    	  <input type="radio" name="check-list" value="exercise3">座りっぱなしの状態(1時間以上)を控えることができましたか？<br>
-    	  <input type="radio" name="check-list" value="exercise4">正しい呼吸方法はできていますか？<br>
-    	  <input type="radio" name="check-list" value="exercise5">SIT・HIITなどのインターバルトレーニングを取り入れることができましたか？<br>
-    	  <input type="radio" name="check-list" value="sleep1">起きてから3〜4時間後に眠気はありませんでしたか？さわやかに脳が働いていましたか？<br>
-    	  <input type="radio" name="check-list" value="sleep2">寝付きが30分以上かかっていませんでしたか？<br>
-    	  <input type="radio" name="check-list" value="sleep3">寝る時間と起きる時間は一定でしたか？<br>
-    	  <input type="radio" name="check-list" value="sleep4">7〜8時間以上睡眠時間をしっかり確保できましたか？<br>
-    	  <input type="radio" name="check-list" value="sleep5">寝る2時間前からスマホやパソコン、テレビを見るのを控えることができましたか？<br>
+	      【食事】<br>
+	      <label><input type="checkbox" id="food1">良質な食事はできましたか？（糖質が多い炭水化物は極力減らし、良質なアブラを摂ることを心がけることができましたか？）<br></label>
+    	  <label><input type="checkbox" id="food2">タンパク質、食物繊維の豊富な食事を積極的に摂ることができましたか？<br></label>
+    	  <label><input type="checkbox" id="food3">ファーストフード・コンビニ食・揚げ物は控えられましたか？<br></label>
+    	  <label><input type="checkbox" id="food4">水分は1日2L以上摂取することができましたか？<br></label>
+    	  <label><input type="checkbox" id="food5">自然素材の食物を購入し、食事摂取することができましたか？<br></label>
+    	  【運動】<br>
+    	  <label><input type="checkbox" id="exercise1">1週間のうち、3〜5回以上(1回30分以上)適度な負荷をかけた運動をすることができましたか？<br></label>
+    	  <label><input type="checkbox" id="exercise2">有酸素運動(ウォーキング・ジョギング・水泳など)と無酸素運動(筋トレ・短距離走など)を適度に取り入れることができましたか？<br></label>
+    	  <label><input type="checkbox" id="exercise3">座りっぱなしの状態(1時間以上)を控えることができましたか？<br></label>
+    	  <label><input type="checkbox" id="exercise4">正しい呼吸方法はできていますか？<br></label>
+    	  <label><input type="checkbox" id="exercise5">SIT・HIITなどのインターバルトレーニングを取り入れることができましたか？<br></label>
+    	  【睡眠】<br>
+    	  <label><input type="checkbox" id="sleep1">起きてから3〜4時間後に眠気はありませんでしたか？さわやかに脳が働いていましたか？<br></label>
+    	  <label><input type="checkbox" id="sleep2">寝付きが30分以上かかっていませんでしたか？<br></label>
+    	  <label><input type="checkbox" id="sleep3">寝る時間と起きる時間は一定でしたか？<br></label>
+    	  <label><input type="checkbox" id="sleep4">7〜8時間以上睡眠時間をしっかり確保できましたか？<br></label>
+    	  <label><input type="checkbox" id="sleep5">寝る2時間前からスマホやパソコン、テレビを見るのを控えることができましたか？<br></label>
+    	  
+    	  <div>
+			<input type="button" value="Check" id="checkButton">
+		  </div>
+		  
+		  <script>
+		  		let totalFoodScore = 0;
+		  		let totalExerciseScore = 0;
+		  		let totalSleepScore = 0;
+		  		
+				function butotnClick(){
+				  if (checkbox1.checked) totalFoodScore += 20;
+				  if (checkbox2.checked) totalFoodScore += 20;
+				  if (checkbox3.checked) totalFoodScore += 20;
+				  if (checkbox4.checked) totalFoodScore += 20;
+				  if (checkbox5.checked) totalFoodScore += 20;
+				  if (checkbox6.checked) totalExerciseScore += 20;
+				  if (checkbox7.checked) totalExerciseScore += 20;
+				  if (checkbox8.checked) totalExerciseScore += 20;
+				  if (checkbox9.checked) totalExerciseScore += 20;
+				  if (checkbox10.checked) totalExerciseScore += 20;
+				  if (checkbox11.checked) totalSleepScore += 20;
+				  if (checkbox12.checked) totalSleepScore += 20;
+				  if (checkbox13.checked) totalSleepScore += 20;
+				  if (checkbox14.checked) totalSleepScore += 20;
+				  if (checkbox15.checked) totalSleepScore += 20;
+				}
+				
+				// for (let i = 1; i <= 5; i++) {
+					// let checkbox[i] = document.getElementById('food[i]');
+				// }
+				let checkbox1 = document.getElementById('food1');
+				let checkbox2 = document.getElementById('food2');
+				let checkbox3 = document.getElementById('food3');
+				let checkbox4 = document.getElementById('food4');
+				let checkbox5 = document.getElementById('food5');
+				let checkbox6 = document.getElementById('exercise1');
+				let checkbox7 = document.getElementById('exercise2');
+				let checkbox8 = document.getElementById('exercise3');
+				let checkbox9 = document.getElementById('exercise4');
+				let checkbox10 = document.getElementById('exercise5');
+				let checkbox11 = document.getElementById('sleep1');
+				let checkbox12 = document.getElementById('sleep2');
+				let checkbox13 = document.getElementById('sleep3');
+				let checkbox14 = document.getElementById('sleep4');
+				let checkbox15 = document.getElementById('sleep5');
+				
+				let checkButton = document.getElementById('checkButton');
+				checkButton.addEventListener('click', butotnClick);
+		  </script>
 	    </p>
-	    
-	    
-	    <div class="polarArea-chart-container" style="position: relative; height:20vh; width:50vw">
-		      
-		      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-		      <canvas id="myChartPolarArea" width="400" height="300"></canvas>
-	      	  
-	      	  <script>
-		      	const DATA_COUNT = 5;
-		      	const NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100};
-	
-		      	const labels = ['Red', 'Orange', 'Yellow', 'Green', 'Blue'];
-		      	const data = {
-		      	  labels: labels,
-		      	  datasets: [
-		      	    {
-		      	      label: 'Dataset 1',
-		      	      data: Utils.numbers(NUMBER_CFG),
-		      	      backgroundColor: [
-		      	        Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
-		      	        Utils.transparentize(Utils.CHART_COLORS.orange, 0.5),
-		      	        Utils.transparentize(Utils.CHART_COLORS.yellow, 0.5),
-		      	        Utils.transparentize(Utils.CHART_COLORS.green, 0.5),
-		      	        Utils.transparentize(Utils.CHART_COLORS.blue, 0.5),
-		      	      ]
-		      	    }
-		      	  ]
-		      	};
-		      	const actions = [
-		      	  {
-		      	    name: 'Randomize',
-		      	    handler(chart) {
-		      	      chart.data.datasets.forEach(dataset => {
-		      	        dataset.data = Utils.numbers({count: chart.data.labels.length, min: 0, max: 100});
-		      	      });
-		      	      chart.update();
-		      	    }
-		      	  },
-		      	  {
-		      	    name: 'Add Data',
-		      	    handler(chart) {
-		      	      const data = chart.data;
-		      	      if (data.datasets.length > 0) {
-		      	        data.labels.push('data #' + (data.labels.length + 1));
-
-		      	        for (let index = 0; index < data.datasets.length; ++index) {
-		      	          data.datasets[index].data.push(Utils.rand(0, 100));
-		      	        }
-
-		      	        chart.update();
-		      	      }
-		      	    }
-		      	  },
-		      	  {
-		      	    name: 'Remove Data',
-		      	    handler(chart) {
-		      	      chart.data.labels.splice(-1, 1); // remove the label first
-
-		      	      chart.data.datasets.forEach(dataset => {
-		      	        dataset.data.pop();
-		      	      });
-
-		      	      chart.update();
-		      	    }
-		      	  }
-		      	];
-		      	const config = {
-	      		  type: 'polarArea',
-	      		  data: data,
-	      		  options: {
-	      		    responsive: true,
-	      		    plugins: {
-	      		      legend: {
-	      		        position: 'top',
-	      		      },
-	      		      title: {
-	      		        display: true,
-	      		        text: 'Chart.js Polar Area Chart'
-	      		      }
-	      		    }
-	      		  },
-	      		};
-		      	const ctx = document.getElementById('myChartPolarArea');
-				const myChartPolarArea = new Chart(ctx, config);
-	      	  </script>
-		</div><!-- class="chart-container" style="position: relative; height:20vh; width:50vw"の閉じタグ -->
 	    </div>
-	  </div>
 	</section>
 	
-	
-	<!-- クイズセクション -->
-	<section class="quiz">
-	  <div class="flex-center">
-        <div class="inner quiz-container">
-	  	<h1>豆知識クイズ</h1>
-	
-	    <p>クイズ</p>
-	    </div>
-	  </div>
-	</secction>
+	<section class="balance-sheet-polar-area">
+		<div class="flex-center">
+	    <div class="polarArea-chart-container" style="position: relative; height:20vh; width:40vw">
+		      
+		      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		      <canvas id="myChartPolarArea" width="300" height="200"></canvas>
+	      	  
+	      	  <script>
+	      		
+		      	const polardata = {
+		      		  labels: [
+		      		    '食事',
+		      		  	'運動',
+		      		    '睡眠'
+		      		  ],
+		      		  datasets: [{
+		      		    label: 'My First Dataset',
+		      		    data: [totalFoodScore, totalExerciseScore, totalSleepScore],
+		      		    backgroundColor: [
+		      		      'rgb(255, 99, 132, 0.3)',
+		      		      'rgb(255, 205, 86, 0.3)',
+		      		      'rgb(75, 192, 192, 0.3)'
+		      		    ]	
+		      		  }]
+		      		};
+		      	const polarconfig = {
+		      		  type: 'polarArea',
+		      		  data: polardata,
+		      		  options: {
+		      			responsive: true,
+		      		    plugins: {
+		      		      legend: {
+		      		        position: 'top',
+		      		      },
+		      		      title: {
+		      		        display: true,
+		      		        text: '食事/運動/睡眠バランス'
+		      		      }
+		      		    }
+		      		  },
+		      		};
+		      	const polarctx = document.getElementById('myChartPolarArea');
+				const myChartPolarArea = new Chart(polarctx, polarconfig);
+	      	  </script>
+		</div><!-- class="chart-container" style="position: relative; height:20vh; width:50vw"の閉じタグ -->
+		</div>
+	</section>
+	</div>
+	</div><!-- class="balance-sheet-index-wrapper"の閉じタグ -->
 	
 </div> <!-- layout:fragment="contents"の閉じタグ-->
 </body>
