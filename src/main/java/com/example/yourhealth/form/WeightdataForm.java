@@ -11,10 +11,10 @@ public class WeightDataForm {
     private Long id;
 
     private Long userId;
+    
+    private UserForm user;
 
     private BigDecimal weightData;
-
-    private UserForm user;
     
     public BigDecimal getWeightData() {
     	 return weightData;

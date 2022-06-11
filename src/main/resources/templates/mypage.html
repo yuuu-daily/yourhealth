@@ -29,7 +29,7 @@
 		<form th:action="@{/data-record}" method="post">
 			<div class="mb-2">
 				<label class="form-label text-black" for="targetWeight">目標体重</label>
-				<input class="form-control" type="number" style="text-align: right;" step="0.1" name="targetWeight">
+				<input class="form-control" type="number" th:value="${targetWeight}" style="text-align: right;" step="0.1" name="targetWeight">kg
 			</div>
 			<input type="submit" value="変更" class="btn w-100 btn-outline-dark" />
 		</form>

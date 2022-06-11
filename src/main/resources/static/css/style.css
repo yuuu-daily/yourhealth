@@ -149,7 +149,7 @@ nav.navbar {
     margin-top: 80px; }
 
 .full-food {
-  opacity: 0.8;
+  opacity: 0.65;
   background-color: #f0f8ff;
   background-image: url("/images/diet-food2.png");
   clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 80%);
@@ -160,7 +160,7 @@ nav.navbar {
     margin-top: 20vh; }
 
 .full-exercise {
-  opacity: 0.8;
+  opacity: 0.65;
   background-image: url("/images/diet-exercise2.png");
   clip-path: polygon(0 0, 100% 20%, 100% 80%, 0% 100%);
   padding: 0px 0 0px 0;
@@ -176,7 +176,7 @@ nav.navbar {
     padding-bottom: 30vh; }
 
 .full-sleep {
-  opacity: 0.8;
+  opacity: 0.65;
   background-image: url("/images/diet-sleep2.png");
   clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 100%);
   padding: 80px 0 20px 0;
@@ -192,11 +192,10 @@ nav.navbar {
 .chart-container {
   display: flex;
   justify-content: end;
-  margin: 5px 5px 5px 460px; }
+  margin: 0 0 0 650px; }
 
 .sheet-container {
   display: flex;
-  flex-direction: row-reverse;
   justify-content: flex-end; }
 
 /*# sourceMappingURL=style.css.map */

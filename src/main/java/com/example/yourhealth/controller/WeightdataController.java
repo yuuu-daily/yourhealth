@@ -23,10 +23,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.yourhealth.entity.UserInf;
@@ -59,6 +57,9 @@ public class WeightDataController {
 	    	Authentication authentication = (Authentication) principal;
 	        UserInf user = (UserInf) authentication.getPrincipal();
 	        
+	        BigDecimal targetWeight = user.getTargetWeightData();
+	        model.addAttribute("targetWeight", targetWeight);
+	        
 	        /**  リポジトリのインターフェースを実装 データの全件取得  **/
 	        Iterable<WeightData> weightData = repository.findAllByOrderByUpdatedAtAsc();
 	        
@@ -71,7 +72,7 @@ public class WeightDataController {
 	        //}
 	        //model.addAttribute("list", list);
 	        
-	        // 入力(更新)日時と体重データを紐付けて連想配列作成 
+	        // 入力(更新)日時と体重データを紐付けて連想配列作成
 	        Map<String, BigDecimal> map = new LinkedHashMap<>();
 	        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 			
@@ -83,11 +84,6 @@ public class WeightDataController {
 	        
 			return "weightData/weight-record";
 		}
-	    @PostMapping("/data-record")
-	    public String postMethod(@RequestParam("targetWeight") BigDecimal targetWeight,Model model) {
-	    	model.addAttribute("targetWeight", targetWeight);
-	        return "weightData/weight-record";
-	    }
 	    
 		// 体重入力画面への遷移ハンドリング
 	    @GetMapping(path = "/weightData")
@@ -97,6 +93,7 @@ public class WeightDataController {
 
 	        return "weightData/weightData";
 	    }
+	    
 	    // getWeiightData()メソッドの定義 エンティティから受け取ったデータをマッピング
 	    public WeightDataForm getWeightData(UserInf user, WeightData entity) throws FileNotFoundException, IOException {
 	        modelMapper.getConfiguration().setAmbiguityIgnored(true);
@@ -121,7 +118,7 @@ public class WeightDataController {
 	    public String create(Principal principal, @Validated @ModelAttribute("form") WeightDataForm form, BindingResult result,
 	            Model model, RedirectAttributes redirAttrs)
 	            throws IOException {
-	    	BigDecimal weight = form.getWeightData();
+	    	 BigDecimal weight = form.getWeightData();
 	    	
 	        if (result.hasErrors()) {
 	            model.addAttribute("hasMessage", true);
@@ -133,7 +130,7 @@ public class WeightDataController {
 	        Authentication authentication = (Authentication) principal;
 	        UserInf user = (UserInf) authentication.getPrincipal();
 	        Long id = user.getUserId();
-	        // フォームから送信されたデータを受け取ってエンティティに渡す
+			// フォームから送信されたデータを受け取ってエンティティに渡す
 	        WeightData entity = new WeightData(id, weight);
 	        
 	        // DBにデータを登録する処理

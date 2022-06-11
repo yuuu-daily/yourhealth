@@ -1,5 +1,6 @@
 package com.example.yourhealth.entity;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -36,10 +37,11 @@ public class User extends AbstractEntity implements UserDetails, UserInf {
         super();
     }
 
-    public User(String email, String name, String password, Authority authority) {
+    public User(String email, String name, String password, BigDecimal targetWeight, Authority authority) {
         this.username = email;
         this.name = name;
         this.password = password;
+        this.targetWeight = targetWeight;
         this.authority = authority;
     }
 
@@ -56,6 +58,9 @@ public class User extends AbstractEntity implements UserDetails, UserInf {
 
     @Column(nullable = false)
     private String password;
+    
+    @Column(nullable = false)
+    private BigDecimal targetWeight;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -67,9 +72,18 @@ public class User extends AbstractEntity implements UserDetails, UserInf {
     public List<WeightData> getWeightData() {
         return weightData;
     }
-    public void setMessages(List<WeightData> weightData) {
+    public void setWeightData(List<WeightData> weightData) {
         this.weightData = weightData;
     }
+    
+    public BigDecimal getTargetWeightData() {
+        return targetWeight;
+    }
+    
+    public void setTargetWeightData(BigDecimal targetWeight) {
+    	this.targetWeight = targetWeight;
+    }
+    
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -24,11 +24,6 @@ public class RequestParamController {
 		return "home";
 	}
 	
-	@GetMapping("mypage")
-	public String showmypageView() {
-		return "mypage";
-	}
-	
 	@GetMapping("contact")
 	public String showContactView() {
 		return "contact";
