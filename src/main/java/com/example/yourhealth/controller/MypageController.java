@@ -9,7 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,50 +37,54 @@ public class MypageController {
 		@Autowired
 	    private HttpServletRequest request;
 		
-		/* DBに保存されている目標体重のviewへの受け渡し */
+		/* --- このリクエストでやりたい操作（目標体重のDBからの取得　→　viewへの受け渡し --- */
 		@GetMapping("mypage")
 		public String editMypageView(Principal principal, Model model) throws IOException {
+			// ログインユーザー情報の取得
 			Authentication authentication = (Authentication) principal;
 	        UserInf user = (UserInf) authentication.getPrincipal();
 	        
-	        BigDecimal targetWeight = user.getTargetWeightData();
+	        /*  ----- ここから下は保存されている目標体重のデータの取得処理 -----  */
+	        
+	        // 現在のログインユーザーのIDを特定
+	        Long currentUserId = user.getUserId();
+	        
+	        /* --- ユーザー情報の中の目標体重レコードを取得 --- */
+	        
+	        // DBからレコード取得 = リポジトリからDBを取得
+	        User currentUser = repository.findByUserId(currentUserId);
+	        // 誰の目標体重か？ (l41, 42の処理でユーザーの情報を取得)
+	        BigDecimal targetWeight = currentUser.getTargetWeightData();
+	        // viewへの受け渡し
 	        model.addAttribute("targetWeight", targetWeight);
 			return "mypage";
+			
 		}
 		
-		/* Authentication authenticationでログインユーザーのID取得 
+		/* Authentication authenticationでログインユーザー情報取得 
 		 * フォームから入力されたデータを受け取りDBにデータを更新      */
 		@PostMapping(path = "data-record", params = "targetWeight")
 	    public String update(Principal principal, @RequestParam("targetWeight") BigDecimal targetWeight, Model model) {
+			// ログインユーザー情報の取得
 			Authentication authentication = (Authentication) principal;
-	        UserInf user = (UserInf) authentication.getPrincipal();
-	       
+			UserInf user = (UserInf) authentication.getPrincipal();
+	        
+	        /* --- 以下、このリクエストでやりたい操作 --- */
+	        // 現在のログインユーザーのIDを特定
 	        Long currentUserId = user.getUserId();
+	        // リポジトリからDBを取得
 	        User currentUser = repository.findByUserId(currentUserId);
+	        // 目標体重の変更・更新
 	        currentUser.setTargetWeightData(targetWeight);
-	        repository.save(currentUser);
+	        repository.saveAndFlush(currentUser);
 	        
-	        /* session の更新 */
+	        /* --- session の更新 (目標体重を更新した後、更新されたnew目標体重をviewに反映させる処理) --- */
+	        authentication = new UsernamePasswordAuthenticationToken(currentUser,currentUser.getPassword(),currentUser.getAuthorities());
+	        SecurityContext context = SecurityContextHolder.getContext();
+	        context.setAuthentication(authentication);
 	        
-//			Optional<User> userInf = repository.findByUserId(userId);
-//	        repository.saveAndFlush(user.getTargetWeightData(), targetWeight);
-//			model.addAttribute("targetWeight", targetWeight);
-//	        user.setTargetWeightData(targetWeight);
-//	        repository.save(user);
+	        // 結果の受け渡し
 	        return "redirect:/data-record";
 		}
-		
-//		public String updateSecurityContext(UserInf user) {
-//		    User user = UserInf.builder()
-//		    		.name(user.getName())
-//		            .username(user.getUsername())
-//		            .password(user.getPassword())
-//		            .roles(userMapper.findRolesByUserId(user.getId()).toArray(String[]::new))
-//		            .build();
-//		    SecurityContext context = SecurityContextHolder.getContext();
-//		    context.setAuthentication(new UsernamePasswordAuthenticationToken(user, user.getPassword(), user.getAuthorities()));
-//		                                                                                                                        
-//		    logger.info("security context updated to {}", user);
-//		}
 		   	
 }

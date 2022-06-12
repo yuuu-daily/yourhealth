@@ -80,6 +80,11 @@ public class User extends AbstractEntity implements UserDetails, UserInf {
         return targetWeight;
     }
     
+    public String getPassword() {
+        return password;
+    }
+
+    
     public void setTargetWeightData(BigDecimal targetWeight) {
     	this.targetWeight = targetWeight;
     }
@@ -91,6 +96,8 @@ public class User extends AbstractEntity implements UserDetails, UserInf {
         authorities.add(new SimpleGrantedAuthority(authority.toString()));
         return authorities;
     }
+    
+    
 
     @Override
     public boolean isAccountNonExpired() {
