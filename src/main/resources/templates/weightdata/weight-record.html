@@ -14,21 +14,19 @@
 	<section class="full-weightGraph">
       <div class="flex-center">
         <div class="inner target-weight-container">
-	      <h2>目標体重</h2>
-			<div>
-				<p th:text="${targetWeight}"></p>
-				<!-- <p th:text="${map}"></p> -->
+			<div class="m-5 col-2 h2 text-left">
+				<p th:text="|目標体重:${targetWeight}kg|"></p>
 			</div>
 	    </div>
 	  </div>
 	      <div class="chart-container" style="position: relative; height:20vh; width:50vw">
 		      <script th:inline="javascript">
 				const map = new Map(Object.entries(/*[[${map}]]*/));
-		    	// console.log(map);
+		    	
 		    	// 全日付の取得後、配列化
 		    	var ceatedDate = [];
 		    	var createdDate = map.keys();
-		    	console.log(createdDate);
+		    	
 		    	// 全体重データの取得後、配列化
 		    	var weightData = [];
 		    	var weightData = map.values();
@@ -38,6 +36,7 @@
 	      	  <canvas id="myChart" width="400" height="300"></canvas>
 	
 			  <script>
+			  
 			      const data = {
 			      // labels: createdDate.toArray(),
 			      labels: Array.from(createdDate),
@@ -95,52 +94,6 @@
     	  <div>
 			<input type="button" value="Check" id="checkButton">
 		  </div>
-		  
-		  <script>
-		  		let totalFoodScore = 0;
-		  		let totalExerciseScore = 0;
-		  		let totalSleepScore = 0;
-		  		
-				function butotnClick(){
-				  if (checkbox1.checked) totalFoodScore += 2;
-				  if (checkbox2.checked) totalFoodScore += 2;
-				  if (checkbox3.checked) totalFoodScore += 2;
-				  if (checkbox4.checked) totalFoodScore += 2;
-				  if (checkbox5.checked) totalFoodScore += 2;
-				  if (checkbox6.checked) totalExerciseScore += 2;
-				  if (checkbox7.checked) totalExerciseScore += 2;
-				  if (checkbox8.checked) totalExerciseScore += 2;
-				  if (checkbox9.checked) totalExerciseScore += 2;
-				  if (checkbox10.checked) totalExerciseScore += 2;
-				  if (checkbox11.checked) totalSleepScore += 2;
-				  if (checkbox12.checked) totalSleepScore += 2;
-				  if (checkbox13.checked) totalSleepScore += 2;
-				  if (checkbox14.checked) totalSleepScore += 2;
-				  if (checkbox15.checked) totalSleepScore += 2;
-				}
-				
-				// for (let i = 1; i <= 5; i++) {
-					// let checkbox[i] = document.getElementById('food[i]');
-				// }
-				let checkbox1 = document.getElementById('food1');
-				let checkbox2 = document.getElementById('food2');
-				let checkbox3 = document.getElementById('food3');
-				let checkbox4 = document.getElementById('food4');
-				let checkbox5 = document.getElementById('food5');
-				let checkbox6 = document.getElementById('exercise1');
-				let checkbox7 = document.getElementById('exercise2');
-				let checkbox8 = document.getElementById('exercise3');
-				let checkbox9 = document.getElementById('exercise4');
-				let checkbox10 = document.getElementById('exercise5');
-				let checkbox11 = document.getElementById('sleep1');
-				let checkbox12 = document.getElementById('sleep2');
-				let checkbox13 = document.getElementById('sleep3');
-				let checkbox14 = document.getElementById('sleep4');
-				let checkbox15 = document.getElementById('sleep5');
-				
-				let checkButton = document.getElementById('checkButton');
-				checkButton.addEventListener('click', butotnClick);
-		  </script>
 	    </p>
 	    </div>
 	</section>
@@ -153,8 +106,15 @@
 		      <canvas id="myChartPolarArea" width="300" height="200"></canvas>
 	      	  
 	      	  <script>
-	      		
-		      	const polardata = {
+	      	  	/* ---------- 初期のグラフ生成(デフォルト値 [0, 0, 0]) ---------- */
+	      		// polarctx (canvasの生成)
+			    let polarctx = document.getElementById('myChartPolarArea');
+	      	  	
+			 	// 3項目(食事・運動・睡眠)のtotalScoreの配列初期化
+		  		let totalScoreList = [0, 0, 0];
+	      	  	
+			 	// テータの設定
+				let polardata = {
 		      		  labels: [
 		      		    '食事',
 		      		  	'運動',
@@ -162,33 +122,114 @@
 		      		  ],
 		      		  datasets: [{
 		      		    label: 'My First Dataset',
-		      		    data: [5, 4, 7],
+		      		    data: [totalScoreList[0], totalScoreList[1], totalScoreList[2]],
 		      		    backgroundColor: [
-		      		      'rgb(255, 99, 132, 0.3)',
-		      		      'rgb(255, 205, 86, 0.3)',
-		      		      'rgb(75, 192, 192, 0.3)'
-		      		    ]	
+		      		        'rgb(255, 99, 132, 0.3)',
+		      		        'rgb(255, 205, 86, 0.3)',
+		      		        'rgb(75, 192, 192, 0.5)'
+		      		      ]	
 		      		  }]
 		      		};
-		      	const polarconfig = {
-		      		  type: 'polarArea',
-		      		  data: polardata,
-		      		  options: {
-		      			responsive: true,
-		      		    plugins: {
-		      		      legend: {
-		      		        position: 'top',
-		      		      },
-		      		      title: {
-		      		        display: true,
-		      		        text: '食事/運動/睡眠バランス'
-		      		      }
-		      		    }
-		      		  },
-		      		};
-		      	const polarctx = document.getElementById('myChartPolarArea');
-				const myChartPolarArea = new Chart(polarctx, polarconfig);
+			 	
+				// グラフ全体の設定
+				let polarconfig = {
+			      		  type: 'polarArea',
+			      		  data: polardata,
+			      		  options: {
+			      			responsive: true,
+			      		    plugins: {
+			      		      legend: {
+			      		        position: 'top',
+			      		      },
+			      		      title: {
+			      		        display: true,
+			      		        text: '食事/運動/睡眠バランス'
+			      		      }
+			      		    }
+			      		  },
+				      		};
+				// グラフの生成(Chart(polarctx キャンバス, polarconfig データ設定))
+			    let myChartPolarArea = new Chart(polarctx, polarconfig);
+			    /* ---------- ここより上までが初期のグラフ生成(デフォルト値 [0, 0, 0]) ---------- */
+			    
+				
+				/* ------    ここから下はボタン押下後の処理    ------ */
+		  		
+		  		// ボタンがクリックされたときに{関数:buttonClick()}を呼び出す
+		  		let checkButton = document.getElementById('checkButton');
+				
+				// ボタンをクリックしたら、グラフを再描画
+				document.getElementById('checkButton').onclick = function() {
+				  // すでにグラフ（インスタンス）が生成されている場合は、グラフを破棄する
+				  if (myChartPolarArea) {
+				    myChartPolarArea.destroy();
+				  }
+				  buttonClick(); // グラフを再描画
+				}
+				
+				/* --- buttonClick()関数ここから ---*/
+				function buttonClick() {
+					
+				  let totalFoodScore = 0;
+		  		  let totalExerciseScore = 0;
+		  		  let totalSleepScore = 0;
+				  
+		  		  for (let i = 1; i <= 5; i++) {
+		  			if (document.getElementById('food' + i).checked) totalFoodScore += 2;
+		  			if (document.getElementById('exercise' + i).checked) totalExerciseScore += 2;
+		  			if (document.getElementById('sleep' + i).checked) totalSleepScore += 2;
+		  		  }
+				  
+				  totalScoreList[0] += totalFoodScore;
+				  totalScoreList[1] += totalExerciseScore;
+				  totalScoreList[2] += totalSleepScore;
+				  
+				  console.log(totalScoreList);
+					// テータの設定
+						let polardata = {
+				      		  labels: [
+				      		    '食事',
+				      		  	'運動',
+				      		    '睡眠'
+				      		  ],
+				      		  datasets: [{
+				      		    label: 'My First Dataset',
+				      		    data: [totalScoreList[0], totalScoreList[1], totalScoreList[2]],
+				      		    backgroundColor: [
+				      		      'rgb(255, 99, 132, 0.3)',
+				      		      'rgb(255, 205, 86, 0.3)',
+				      		      'rgb(75, 192, 192, 0.3)'
+				      		    ]	
+				      		  }]
+				      		};
+						
+							// グラフ全体の設定
+							let polarconfig = {
+						      		  type: 'polarArea',
+						      		  data: polardata,
+						      		  options: {
+						      			responsive: true,
+						      		    plugins: {
+						      		      legend: {
+						      		        position: 'top',
+						      		      },
+						      		      title: {
+						      		        display: true,
+						      		        text: '食事/運動/睡眠バランス'
+						      		      }
+						      		    }
+						      		  },
+						      		};
+							
+						 // let polarctx (canvasの生成)
+					     let polarctx = document.getElementById('myChartPolarArea');
+						 // グラフの生成(Chart(polarctx キャンバス, polarconfig データ設定))
+					     let myChartPolarArea = new Chart(polarctx, polarconfig);
+				}
+				/* --- buttonClick()関数ここまで --- */
+				
 	      	  </script>
+	      	  
 		</div><!-- class="chart-container" style="position: relative; height:20vh; width:50vw"の閉じタグ -->
 		</div>
 	</section>

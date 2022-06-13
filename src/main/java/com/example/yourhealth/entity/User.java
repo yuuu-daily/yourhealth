@@ -96,8 +96,6 @@ public class User extends AbstractEntity implements UserDetails, UserInf {
         authorities.add(new SimpleGrantedAuthority(authority.toString()));
         return authorities;
     }
-    
-    
 
     @Override
     public boolean isAccountNonExpired() {

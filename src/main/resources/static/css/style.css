@@ -103,6 +103,14 @@ nav.navbar {
   background-size: cover; }
   .weight-records-index-wrapper main {
     padding-top: 80px; }
+  .weight-records-index-wrapper .target-weight-container {
+    display: flex;
+    justify-content: flex-start; }
+
+.balance-sheet-index-wrapper {
+  width: 100vw;
+  height: 100vh;
+  background-color: #f0f8ff; }
 
 .mypage-wrapper {
   width: 100vw;
@@ -149,7 +157,7 @@ nav.navbar {
     margin-top: 80px; }
 
 .full-food {
-  opacity: 0.65;
+  opacity: 0.8;
   background-color: #f0f8ff;
   background-image: url("/images/diet-food2.png");
   clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 80%);
@@ -160,7 +168,7 @@ nav.navbar {
     margin-top: 20vh; }
 
 .full-exercise {
-  opacity: 0.65;
+  opacity: 0.8;
   background-image: url("/images/diet-exercise2.png");
   clip-path: polygon(0 0, 100% 20%, 100% 80%, 0% 100%);
   padding: 0px 0 0px 0;
@@ -176,7 +184,7 @@ nav.navbar {
     padding-bottom: 30vh; }
 
 .full-sleep {
-  opacity: 0.65;
+  opacity: 0.8;
   background-image: url("/images/diet-sleep2.png");
   clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 100%);
   padding: 80px 0 20px 0;
@@ -185,17 +193,14 @@ nav.navbar {
   .full-sleep .flex-center {
     margin-top: 20vh; }
 
-.weight-records-index-wrapper .target-weight-container {
-  display: flex;
-  justify-content: flex-start; }
-
 .chart-container {
   display: flex;
   justify-content: end;
-  margin: 0 0 0 650px; }
+  margin: 5px 5px 5px 460px; }
 
 .sheet-container {
   display: flex;
+  flex-direction: row-reverse;
   justify-content: flex-end; }
 
 /*# sourceMappingURL=style.css.map */
