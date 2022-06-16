@@ -12,26 +12,30 @@
       <main class="col-md-4 mx-auto">
       <h2 class="text-center text-black">マイページ</h2>
 		<form th:action="@{/mypage}" method="post">
-			<div class="mb-2">
-				<label class="form-label text-black" for="session_name">Name</label>
-				<input class="form-control" type="text" name="username" id="session_username" />
-			</div>
-			<div class="mb-2">
+			<div class="mb-4">
 				<label class="form-label text-black" for="session_email">Email</label>
 				<input class="form-control" type="text" name="email" id="session_email" />
 			</div>
-			<div class="mb-2">
+			<div class="mb-4">
 				<label class="form-label text-black" for="sessin_password">Password</label>
 				<input class="form-control" type="text" name="password" id="session_password" />
 			</div>
 			<input type="submit" value="設定変更" class="btn w-100 btn-outline-dark" />
 		</form>
 		<form th:action="@{/data-record}" method="post">
-			<div class="mb-2">
+			
+			<div class="m-2 h4 text-center">
 				<label class="form-label text-black" for="targetWeight">目標体重</label>
-				<input class="form-control" type="number" th:value="${targetWeight}" style="text-align: right;" step="0.1" name="targetWeight">kg
 			</div>
+			<div class="mb-8 m-2 text-center">
+				<input class="form-control" type="number" th:value="${targetWeight}" style="text-align: right;" step="0.1" name="targetWeight">
+			</div>
+			<div class="mb-4 text-center">
+			kg
+			</div>
+			<div class="mb-4 m-2">
 			<input type="submit" value="変更" class="btn w-100 btn-outline-dark" />
+			
 		</form>
       </main>
     </div>
