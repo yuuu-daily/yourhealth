@@ -48,19 +48,15 @@ nav.navbar {
 .pages-index-wrapper {
   width: 100vw;
   height: 100vh;
+  opacity:0.8;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   background-color: #464646;
   background-image: 
-    linear-gradient(140deg, 
-      #00f3ffA0, 
-      #0028b960 40%, 
-      #00f3ff60 60%, 
-      #00f3ffA0), 
       /* background-image:url(‘../images/icons/topview1.jpg’); */
-      url('/images/icons/topview3.jpg');
+      url('/images/icons/topview1.jpg');
   animation: move 20s infinite both;
   .container {
     padding-top: 80px;
@@ -247,13 +243,24 @@ nav.navbar {
 }
 
 .chart-container {
-	  display: flex;
-	  justify-content: end;
-	  margin: 5px 5px 5px 460px;
+  display: flex;
+  justify-content: end;
+  margin: 5px 5px 5px 460px;
 }
 
 .sheet-container {
-	  display: flex;
-	  flex-direction: row-reverse;
-	  justify-content: flex-end;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.about-index-wrapper {
+  width: 100vw;
+  height: 100vh;
+  opacity:0.8;
+  background-color: #f0f8ff;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
