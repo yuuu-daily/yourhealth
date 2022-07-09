@@ -11,5 +11,9 @@ public interface UserInf {
     BigDecimal getTargetWeightData();
 
 	void setTargetWeightData(BigDecimal targetWeight);
+	
+	String getPurpose();
+	
+	void setPurpose(String purpose);
 
 }

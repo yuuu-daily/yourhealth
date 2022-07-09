@@ -1,5 +1,5 @@
 @charset "UTF-8";
-h1, h2, h3, h4, h5, h6 {
+h2, h3, h4, h5, h6 {
   font-weight: 120; }
 
 .p-form-top {
@@ -96,7 +96,7 @@ nav.navbar {
 
 .weight-records-index-wrapper {
   width: 100vw;
-  height: 100vh;
+  height: 80vh;
   background-color: #f0f8ff;
   background-position: center center;
   background-repeat: no-repeat;
@@ -104,9 +104,6 @@ nav.navbar {
   background-size: cover; }
   .weight-records-index-wrapper main {
     padding-top: 80px; }
-  .weight-records-index-wrapper .target-weight-container {
-    display: flex;
-    justify-content: flex-start; }
 
 .balance-sheet-index-wrapper {
   width: 100vw;
@@ -196,8 +193,7 @@ nav.navbar {
 
 .chart-container {
   display: flex;
-  justify-content: end;
-  margin: 5px 5px 5px 460px; }
+  justify-content: center; }
 
 .sheet-container {
   display: flex;
@@ -213,5 +209,15 @@ nav.navbar {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover; }
+  .about-index-wrapper .concept-container {
+    background-color: #f0f8ff; }
+    .about-index-wrapper .concept-container .h1 {
+      text-decoration: underline;
+      text-decoration-color: #543f32; }
+  .about-index-wrapper .service-container {
+    background-color: #f0f8ff; }
+    .about-index-wrapper .service-container .h1 {
+      text-decoration: underline;
+      text-decoration-color: #543f32; }
 
 /*# sourceMappingURL=style.css.map */

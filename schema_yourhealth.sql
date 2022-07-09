@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS users (
   password VARCHAR(255) NOT NULL,
   username VARCHAR(255) NOT NULL,
   target_weight DECIMAL(4,1) NOT NULL DEFAULT 0,
+  purpose VARCHAR(255) NOT NULL DEFAULT'Not set',
   created_at TIMESTAMP NOT NULL,
   updated_at TIMESTAMP NOT NULL,
   PRIMARY KEY (user_id)

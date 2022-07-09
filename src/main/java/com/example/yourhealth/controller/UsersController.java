@@ -39,7 +39,7 @@ public class UsersController {
         String name = form.getName();
         String email = form.getEmail();
         String password = form.getPassword();
-        String passwordConfirmation = form.getPasswordConfirmation();
+        String passwordConfirmation = form.getPasswordConfirmation();									
 
         if (repository.findByUsername(email) != null) {
             FieldError fieldError = new FieldError(result.getObjectName(), "email", "その E メールはすでに使用されています。");
@@ -52,7 +52,7 @@ public class UsersController {
             return "users/new";
         }
 
-		User entity = new User(email, name, passwordEncoder.encode(password), new BigDecimal(0), Authority.ROLE_USER);// (BigDecimal??)
+		User entity = new User(email, name, passwordEncoder.encode(password), new BigDecimal(0), "Not set", Authority.ROLE_USER);// (BigDecimal??)
         repository.saveAndFlush(entity);
         
         model.addAttribute("hasMessage", true);

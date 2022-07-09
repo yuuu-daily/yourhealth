@@ -12,15 +12,22 @@
 	<div class="weight-records-index-wrapper">
 	<!-- グラフのセクション -->
 	<section class="full-weightGraph">
-      <div class="flex-center">
-        <div class="inner target-weight-container">
-			<div class="m-5 col-2 h2 text-left">
-				<p th:text="|目標体重:${targetWeight}kg|"></p>
-				<span class="border border-light border-4"></span>
+	  <div class="chart-container">
+	    <div class="row m-5">
+        <div class="col-md-4 flex-center">
+			<div class="d-flex flex-column bd-highlight mb-3">
+			  <div class="p-2 bd-highlight">
+			    <h3 th:text="|目標体重:${targetWeight}kg|"></h3>
+			  </div>
+			  <div class="p-2 bd-highlight">
+			    <h3>目的</h3>
+			    <p style="padding: 10px; margin-bottom: 10px; width: 500px; height: 300px; border: 1px solid #333333; border-radius: 10px;" th:text="${purpose}"></p>
+			  </div>
 			</div>
 	    </div>
-	  </div>
-	      <div class="chart-container" style="position: relative; height:20vh; width:50vw">
+	    
+	    <div class="col-md-4 offset-md-1">
+	      <div style="position: relative; height:20vh; width:50vw">
 		      <script th:inline="javascript">
 				const map = new Map(Object.entries(/*[[${map}]]*/));
 		    	
@@ -58,8 +65,10 @@
 				  const ctx = document.getElementById('myChart');
 				  const myChart = new Chart(ctx, config);
 			   </script>
-		   </div><!-- class="chart-container" style="position: relative; height:20vh; width:50vw"の閉じタグ -->
-	
+		   </div><!-- style="position: relative; height:20vh; width:50vw"の閉じタグ -->
+		 </div><!-- "col-md-4 offset-md-4"の閉じタグ -->
+		 </div><!-- class="row m-5"の閉じタグ -->
+	  </div><!-- "chart-container"の閉じタグ-->
 	</section>
 	</div> <!-- class="weight-records-index-wrapper"の閉じタグ-->
 	
@@ -74,23 +83,23 @@
 	  	<div class="p-2">
 	    <p>
 	      【食事】<br>
-	      <label><input type="checkbox" id="food1">良質な食事はできましたか？（糖質が多い炭水化物は極力減らし、良質なアブラを摂ることを心がけることができましたか？）<br></label>
-    	  <label><input type="checkbox" id="food2">タンパク質、食物繊維の豊富な食事を積極的に摂ることができましたか？<br></label>
-    	  <label><input type="checkbox" id="food3">ファーストフード・コンビニ食・揚げ物は控えられましたか？<br></label>
-    	  <label><input type="checkbox" id="food4">水分は1日2L以上摂取することができましたか？<br></label>
-    	  <label><input type="checkbox" id="food5">自然素材の食物を購入し、食事摂取することができましたか？<br></label>
+	      <label><input type="checkbox" id="food1">良質な食事はできましたか？（糖質が多い炭水化物は極力減らし、良質なアブラを摂ることを心がけることができましたか？）</label><br>
+    	  <label><input type="checkbox" id="food2">タンパク質、食物繊維の豊富な食事を積極的に摂ることができましたか？</label><br>
+    	  <label><input type="checkbox" id="food3">ファーストフード・コンビニ食・揚げ物は控えられましたか？</label><br>
+    	  <label><input type="checkbox" id="food4">水分は1日2L以上摂取することができましたか？</label><br>
+    	  <label><input type="checkbox" id="food5">自然素材の食物を購入し、食事摂取することができましたか？</label><br>
     	  【運動】<br>
-    	  <label><input type="checkbox" id="exercise1">1週間のうち、3〜5回以上(1回30分以上)適度な負荷をかけた運動をすることができましたか？<br></label>
-    	  <label><input type="checkbox" id="exercise2">有酸素運動(ウォーキング・ジョギング・水泳など)と無酸素運動(筋トレ・短距離走など)を適度に取り入れることができましたか？<br></label>
-    	  <label><input type="checkbox" id="exercise3">座りっぱなしの状態(1時間以上)を控えることができましたか？<br></label>
-    	  <label><input type="checkbox" id="exercise4">正しい呼吸方法はできていますか？<br></label>
-    	  <label><input type="checkbox" id="exercise5">SIT・HIITなどのインターバルトレーニングを取り入れることができましたか？<br></label>
+    	  <label><input type="checkbox" id="exercise1">1週間のうち、3〜5回以上(1回30分以上)適度な負荷をかけた運動をすることができましたか？</label><br>
+    	  <label><input type="checkbox" id="exercise2">有酸素運動(ウォーキング・ジョギング・水泳など)と無酸素運動(筋トレ・短距離走など)を適度に取り入れることができましたか？</label><br>
+    	  <label><input type="checkbox" id="exercise3">座りっぱなしの状態(1時間以上)を控えることができましたか？</label><br>
+    	  <label><input type="checkbox" id="exercise4">正しい呼吸方法はできていますか？</label><br>
+    	  <label><input type="checkbox" id="exercise5">SIT・HIITなどのインターバルトレーニングを取り入れることができましたか？</label><br>
     	  【睡眠】<br>
-    	  <label><input type="checkbox" id="sleep1">起きてから3〜4時間後に眠気はありませんでしたか？さわやかに脳が働いていましたか？<br></label>
-    	  <label><input type="checkbox" id="sleep2">寝付きが30分以上かかっていませんでしたか？<br></label>
-    	  <label><input type="checkbox" id="sleep3">寝る時間と起きる時間は一定でしたか？<br></label>
-    	  <label><input type="checkbox" id="sleep4">7〜8時間以上睡眠時間をしっかり確保できましたか？<br></label>
-    	  <label><input type="checkbox" id="sleep5">寝る2時間前からスマホやパソコン、テレビを見るのを控えることができましたか？<br></label>
+    	  <label><input type="checkbox" id="sleep1">起きてから3〜4時間後に眠気はありませんでしたか？さわやかに脳が働いていましたか？</label><br>
+    	  <label><input type="checkbox" id="sleep2">寝付きが30分以上かかっていませんでしたか？</label><br>
+    	  <label><input type="checkbox" id="sleep3">寝る時間と起きる時間は一定でしたか？</label><br>
+    	  <label><input type="checkbox" id="sleep4">7〜8時間以上睡眠時間をしっかり確保できましたか？</label><br>
+    	  <label><input type="checkbox" id="sleep5">寝る2時間前からスマホやパソコン、テレビを見るのを控えることができましたか？</label><br>
     	  
     	  <div>
 			<input type="button" value="Check" id="checkButton">

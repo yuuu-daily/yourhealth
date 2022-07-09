@@ -37,11 +37,12 @@ public class User extends AbstractEntity implements UserDetails, UserInf {
         super();
     }
 
-    public User(String email, String name, String password, BigDecimal targetWeight, Authority authority) {
+    public User(String email, String name, String password, BigDecimal targetWeight, String purpose, Authority authority) {
         this.username = email;
         this.name = name;
         this.password = password;
         this.targetWeight = targetWeight;
+        this.purpose = purpose;
         this.authority = authority;
     }
 
@@ -61,6 +62,9 @@ public class User extends AbstractEntity implements UserDetails, UserInf {
     
     @Column(nullable = false)
     private BigDecimal targetWeight;
+    
+    @Column(nullable = false)
+    private String purpose;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -80,16 +84,22 @@ public class User extends AbstractEntity implements UserDetails, UserInf {
         return targetWeight;
     }
     
+    public String getPurpose() {
+    	return purpose;
+    }
+    
     public String getPassword() {
         return password;
     }
 
-    
     public void setTargetWeightData(BigDecimal targetWeight) {
     	this.targetWeight = targetWeight;
     }
     
-
+    public void setPurpose(String purpose) {
+    	this.purpose = purpose;
+    }
+    
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
