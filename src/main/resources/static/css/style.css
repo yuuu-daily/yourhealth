@@ -1,5 +1,5 @@
 @charset "UTF-8";
-h2, h3, h4, h5, h6 {
+h2, h4, h5, h6 {
   font-weight: 120; }
 
 .p-form-top {
@@ -211,13 +211,33 @@ nav.navbar {
   background-size: cover; }
   .about-index-wrapper .concept-container {
     background-color: #f0f8ff; }
-    .about-index-wrapper .concept-container .h1 {
+    .about-index-wrapper .concept-container h1 {
       text-decoration: underline;
-      text-decoration-color: #543f32; }
+      text-decoration-color: #543f32;
+      padding-top: 2.4em;
+      font-family: '筑紫B丸ゴシック', sans-serif; }
+    .about-index-wrapper .concept-container h3 {
+      text-decoration: underline;
+      margin-bottom: 1rem;
+      font-family: '筑紫B丸ゴシック', sans-serif; }
+    .about-index-wrapper .concept-container img {
+      border-radius: 30px; }
+    .about-index-wrapper .concept-container .row {
+      margin-bottom: 1.3rem; }
   .about-index-wrapper .service-container {
     background-color: #f0f8ff; }
-    .about-index-wrapper .service-container .h1 {
+    .about-index-wrapper .service-container h1 {
       text-decoration: underline;
-      text-decoration-color: #543f32; }
+      text-decoration-color: #543f32;
+      padding-top: 2.4em;
+      font-family: '筑紫B丸ゴシック', sans-serif; }
+    .about-index-wrapper .service-container h3 {
+      text-decoration: underline;
+      margin-bottom: 1rem;
+      font-family: '筑紫B丸ゴシック', sans-serif; }
+    .about-index-wrapper .service-container img {
+      border-radius: 30px; }
+    .about-index-wrapper .service-container .row {
+      margin-bottom: 1.3rem; }
 
 /*# sourceMappingURL=style.css.map */

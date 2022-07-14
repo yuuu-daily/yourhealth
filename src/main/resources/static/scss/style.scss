@@ -1,4 +1,4 @@
-h2, h3, h4, h5, h6 {
+h2, h4, h5, h6 {
   font-weight: 120;
 }
 .p-form-top {
@@ -263,16 +263,42 @@ nav.navbar {
 	
   .concept-container {
 	background-color: #f0f8ff;
-	.h1 {
+	h1 {
 	  text-decoration:underline;
 	  text-decoration-color:#543f32;
+	  padding-top: 2.4em;
+	  font-family: '筑紫B丸ゴシック', sans-serif;
+	}
+	h3 {
+		text-decoration:underline;
+		margin-bottom: 1rem;
+		font-family: '筑紫B丸ゴシック', sans-serif;
+	}
+	img {
+		border-radius: 30px;
+	}
+	.row {
+		margin-bottom: 1.3rem;
 	}
   }
   .service-container {
 	background-color: #f0f8ff;
-	.h1 {
+	h1 {
 	  text-decoration:underline;
 	  text-decoration-color:#543f32;
+	  padding-top: 2.4em;
+	  font-family: '筑紫B丸ゴシック', sans-serif;
+	}
+	h3 {
+		text-decoration:underline;
+		margin-bottom: 1rem;
+		font-family: '筑紫B丸ゴシック', sans-serif;
+	}
+	img {
+		border-radius: 30px;
+	}
+	.row {
+		margin-bottom: 1.3rem;
 	}
   }
   
