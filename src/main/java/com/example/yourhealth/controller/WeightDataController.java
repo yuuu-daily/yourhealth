@@ -58,8 +58,9 @@ public class WeightDataController {
 	        UserInf user = (UserInf) authentication.getPrincipal();
 	        
 	        BigDecimal targetWeight = user.getTargetWeightData();
+	        String purpose = user.getPurpose();
 	        model.addAttribute("targetWeight", targetWeight);
-	        
+	        model.addAttribute("purpose", purpose);
 	        /**  リポジトリのインターフェースを実装 データの全件取得  **/
 	        Iterable<WeightData> weightData = repository.findAllByOrderByUpdatedAtAsc();
 	        

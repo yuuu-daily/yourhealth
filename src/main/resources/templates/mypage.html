@@ -11,18 +11,16 @@
     <div class="row">
       <main class="col-md-4 mx-auto">
       <h2 class="text-center text-black">マイページ</h2>
-		<form th:action="@{/mypage}" method="post">
-			<div class="mb-4">
-				<label class="form-label text-black" for="session_email">Email</label>
-				<input class="form-control" type="text" name="email" id="session_email" />
+		<form th:action="@{/update-purpose}" method="post">
+			<div class="m-2 h4 text-center">
+				<label for="textarea" class="form-label">目的</label>
 			</div>
-			<div class="mb-4">
-				<label class="form-label text-black" for="sessin_password">Password</label>
-				<input class="form-control" type="text" name="password" id="session_password" />
+			<div class="mb-8 m-2 text-center">
+  				<textarea class="form-control" id="textarea" rows="3" th:value="${purpose}" name="purpose"></textarea>
 			</div>
-			<input type="submit" value="設定変更" class="btn w-100 btn-outline-dark" />
+			<input type="submit" value="更新" class="btn w-100 btn-outline-dark" />
 		</form>
-		<form th:action="@{/data-record}" method="post">
+		<form th:action="@{/update-target-weight}" method="post">
 			
 			<div class="m-2 h4 text-center">
 				<label class="form-label text-black" for="targetWeight">目標体重</label>

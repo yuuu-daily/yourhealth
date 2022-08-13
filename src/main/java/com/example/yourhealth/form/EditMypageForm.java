@@ -17,4 +17,8 @@ public class EditMypageForm {
 	@NotNull
 	@Size(min=1, max=150)
 	private BigDecimal targetWeight;
+	
+	@NotNull
+	@Size(min=1, max=255)
+	private String purpose;
 }

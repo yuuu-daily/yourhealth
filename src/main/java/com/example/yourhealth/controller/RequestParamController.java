@@ -9,9 +9,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class RequestParamController {
 	
-	@GetMapping("show")
+	@GetMapping("/")
 	public String showView() {
 		return "show";
+	}
+	
+	@GetMapping("about")
+	public String aboutView() {
+		return "about";
 	}
 
 	@PostMapping(value = "logout-complete", params = "logout")
