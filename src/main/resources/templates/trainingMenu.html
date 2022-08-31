@@ -7,46 +7,27 @@
 <title>トレーニングメニュー</title>
 </head>
 <body>
-  <div layout:fragment="contents">
-  <p th:text="${moji}"></p>
+  <div class="menu-index-wrapper text-center" layout:fragment="contents">
+  <h2 th:text="${moji}"></h2>
   
   <div class="row row-cols-1 row-cols-md-3 g-4">
-  <div class="col">
+  	<div class="col" th:each="trainingMenu : ${trainingMenus}" th:object="${trainingMenu}">
     <div class="card h-100">
       <img src="..." class="card-img-top" alt="...">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      	<h3 class="card-title" th:text="*{category}"></h3>
+        <h5 class="card-title" th:text="*{title}">Card title</h5>
+        <p class="card-text" th:text="*{description}">This is a longer card </p>
       </div>
     </div>
-  </div>
-  <div class="col">
-    <div class="card h-100">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a short card.</p>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card h-100">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card h-100">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
-    </div>
-  </div>
+  	</div>
+  	
+  	<!-- <tr th:each="trainingMenu : ${trainingMenus}" th:object="${trainingMenu}">
+	    <td th:text="*{category}"></td>
+	    <td th:text="*{title}"></td>
+	    <td th:text="*{description}"></td>
+	</tr> -->
+	
 </div><!-- class="row row-cols-1 row-cols-md-3 g-4"の閉じタグ -->
 </div><!-- layout:fragment="contents"の閉じタグ -->
 </body>

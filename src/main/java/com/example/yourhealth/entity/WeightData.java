@@ -45,7 +45,6 @@ public class WeightData extends AbstractEntity implements Serializable {
     public WeightData(Long id, BigDecimal weight) {
     	this.userId = id;
     	this.weight = weight;
-    	// this.targetWeight = targetWeight;
     }
     
     public User getUser() {

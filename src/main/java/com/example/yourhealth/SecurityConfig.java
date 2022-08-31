@@ -51,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // @formatter:off
-        http.authorizeRequests().antMatchers("/create", "/trainingMenu", "/edit", "/about", "/user", "/error", "/signup", "/contact", "/privacyPolicy", "/concept", "/confirm", "/send", "/login", "/logout-complete", "/").permitAll()
+        http.authorizeRequests().antMatchers("complete", "/edit", "/about", "/user", "/error", "/signup", "/contact", "/privacyPolicy", "/concept", "/confirm", "/send", "/login", "/logout-complete", "/").permitAll()
                 .anyRequest().authenticated()
                 // ログアウト処理
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/logout-complete").clearAuthentication(true)
