@@ -140,3 +140,4 @@ buildNumber.properties
 bin/
 
 
+/.apt_generated_tests/

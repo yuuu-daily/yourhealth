@@ -8,27 +8,27 @@
 </head>
 <body>
   <div class="menu-index-wrapper text-center" layout:fragment="contents">
-  <h2 th:text="${moji}"></h2>
-  
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-  	<div class="col" th:each="trainingMenu : ${trainingMenus}" th:object="${trainingMenu}">
-    <div class="card h-100">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-      	<h3 class="card-title" th:text="*{category}"></h3>
-        <h5 class="card-title" th:text="*{title}">Card title</h5>
-        <p class="card-text" th:text="*{description}">This is a longer card </p>
-      </div>
-    </div>
-  	</div>
-  	
-  	<!-- <tr th:each="trainingMenu : ${trainingMenus}" th:object="${trainingMenu}">
-	    <td th:text="*{category}"></td>
-	    <td th:text="*{title}"></td>
-	    <td th:text="*{description}"></td>
-	</tr> -->
-	
-</div><!-- class="row row-cols-1 row-cols-md-3 g-4"の閉じタグ -->
+  <div class="container">
+    <div class="row">
+    <h1 class="section-headline" th:text="${toptitle}"></h1>
+		<div class="col-md-4 mb-4" th:each="trainingMenu : ${trainingMenus}" th:object="${trainingMenu}" style="width: 20rem;">
+		<a href="#" class="card-link" style="text-decoration:none;">
+		<div class="card text-center">
+		  <div class="card-header">
+		    TomBlack
+		  </div>
+		  <div class="card-body">
+		    <h5 class="card-title" th:text="*{title}"></h5>
+		    <p class="card-text" th:text="*{description}"></p>
+		  </div>
+		  <div class="card-footer text-muted">
+		    2 days ago
+		  </div>
+		</div><!-- class="card text-center"の閉じタグ -->
+		</a>
+		</div><!-- class="col-md-4 card"の閉じタグ -->
+    </div><!-- class="row"の閉じタグ -->
+  </div><!-- class="container"の閉じタグ -->
 </div><!-- layout:fragment="contents"の閉じタグ -->
 </body>
 </html>
