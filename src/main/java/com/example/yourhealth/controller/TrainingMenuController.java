@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -49,7 +50,7 @@ public class TrainingMenuController {
     	Authentication authentication = (Authentication) principal;
         UserInf user = (UserInf) authentication.getPrincipal();
         
-        model.addAttribute("moji", "トレーニングメニュー一覧");
+        model.addAttribute("toptitle", "トレーニングメニュー一覧");
         
         /**  リポジトリのインターフェースを実装 データの全件取得  **/
         Iterable<TrainingMenu> trainingMenus = repository.findAllByOrderByUpdatedAtAsc();
@@ -64,6 +65,21 @@ public class TrainingMenuController {
 	public String getTrainigMenu(Model model) {
 		model.addAttribute("form", new TrainingMenuForm());
 		return "create";
+	}
+	
+	/* カードリストの詳細を表示するメソッド */
+	@RequestMapping("/users/view/{trainingId}")
+	public String displayView(Principal principal, Model model, @PathVariable("trainingId") Long trainingId) {
+    	Authentication authentication = (Authentication) principal;
+        UserInf user = (UserInf) authentication.getPrincipal();
+        Long userId = user.getUserId();
+        //Long trainingId = 
+        
+        /**  リポジトリのインターフェースを実装 データの取得  **/
+        // Iterable<TrainingMenu> trainingMenuList = repository.findByIdAndUserId(Long id, Long userId)
+        // model.addAttribute("trainingMenus", trainingMenus);
+ 
+		return "users/view";
 	}
 	
 	// 引数でModelクラスのインスタンスを受け取る

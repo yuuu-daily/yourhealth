@@ -14,7 +14,6 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
-
 @Entity
 @Table(name = "training_menus")
 @Data
@@ -46,9 +45,8 @@ public class TrainingMenu extends AbstractEntity implements Serializable {
 		super();
 	}
 	
-	// コンストラクター
 	public TrainingMenu(Long id, String category, String title, String description) {
-		this.userId = id;
+		this.id = id;
 		this.category = category;
 		this.title = title;
 		this.description = description;
