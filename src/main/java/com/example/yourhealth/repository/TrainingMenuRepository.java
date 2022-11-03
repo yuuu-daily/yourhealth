@@ -10,5 +10,11 @@ import com.example.yourhealth.entity.TrainingMenu;
 public interface TrainingMenuRepository extends JpaRepository<TrainingMenu, String> {
 	
 	Iterable<TrainingMenu> findAllByOrderByUpdatedAtAsc();
+	
+    TrainingMenu findByIdAndUserId(Long id, Long userId);
+    
+    TrainingMenu findById(Long id);
+
+
 }
 

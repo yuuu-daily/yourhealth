@@ -3,6 +3,7 @@ package com.example.yourhealth.controller;
 import java.io.IOException;
 import java.security.Principal;
 
+import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.modelmapper.ModelMapper;
@@ -50,7 +51,7 @@ public class TrainingMenuController {
     	Authentication authentication = (Authentication) principal;
         UserInf user = (UserInf) authentication.getPrincipal();
         
-        model.addAttribute("toptitle", "トレーニングメニュー一覧");
+        model.addAttribute("toptitle", "Training Menu List");
         
         /**  リポジトリのインターフェースを実装 データの全件取得  **/
         Iterable<TrainingMenu> trainingMenus = repository.findAllByOrderByUpdatedAtAsc();
@@ -68,18 +69,23 @@ public class TrainingMenuController {
 	}
 	
 	/* カードリストの詳細を表示するメソッド */
-	@RequestMapping("/users/view/{trainingId}")
-	public String displayView(Principal principal, Model model, @PathVariable("trainingId") Long trainingId) {
+	@RequestMapping("/user/menu/{trainingId}")
+	public String displayTrainingMenuView(Principal principal, Model model, @PathVariable("trainingId") Long trainingId) {
     	Authentication authentication = (Authentication) principal;
         UserInf user = (UserInf) authentication.getPrincipal();
         Long userId = user.getUserId();
-        //Long trainingId = 
         
-        /**  リポジトリのインターフェースを実装 データの取得  **/
-        // Iterable<TrainingMenu> trainingMenuList = repository.findByIdAndUserId(Long id, Long userId)
-        // model.addAttribute("trainingMenus", trainingMenus);
- 
-		return "users/view";
+        try {
+        	/**  リポジトリのインターフェースを実装 データの取得  **/
+//            TrainingMenu userTraining = repository.findByIdAndUserId(trainingId, userId);
+            TrainingMenu userTraining = repository.findById(trainingId);
+//            List<TrainingMenu> training = user.getTrainingMenuList(trainingId);
+            model.addAttribute("training", userTraining);
+//            model.addAttribute("training", training);
+            return "user/menu";
+        } catch (EntityNotFoundException e) {
+            return "redirect:trainingMenu";
+        }
 	}
 	
 	// 引数でModelクラスのインスタンスを受け取る
@@ -114,7 +120,6 @@ public class TrainingMenuController {
         // 体重管理画面の表示へリダイレクト
         return "redirect:/trainingMenu";
     }
-
 	
 	/* トレーニングメニューの作成完了表示画面 */
 	@PostMapping("complete")
@@ -122,6 +127,5 @@ public class TrainingMenuController {
 		model.addAttribute("form", form);
 		return "result";
 	}
-	
 	
 }

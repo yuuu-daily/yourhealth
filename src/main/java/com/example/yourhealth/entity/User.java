@@ -70,6 +70,10 @@ public class User extends AbstractEntity implements UserDetails, UserInf {
     @Enumerated(EnumType.STRING)
     private Authority authority;
     
+    public Long getUserId() {
+    	return userId;
+    }
+    
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<WeightData> weightData;
     
@@ -78,6 +82,16 @@ public class User extends AbstractEntity implements UserDetails, UserInf {
     }
     public void setWeightData(List<WeightData> weightData) {
         this.weightData = weightData;
+    }
+    
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<TrainingMenu> trainingMenuList;
+    
+    public List<TrainingMenu> getTrainingMenuList(Long id) {
+        return trainingMenuList;
+    }
+    public void setTrainingMenuList(List<TrainingMenu> trainingMenuList) {
+        this.trainingMenuList = trainingMenuList;
     }
     
     public BigDecimal getTargetWeightData() {
