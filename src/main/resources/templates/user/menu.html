@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th ="https://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultrq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/layout}">
+<head>
+<title>カード詳細画面</title>
+</head>
+<body>
+  <div class="menu-wrapper" layout:fragment="contents">
+    
+    <div class="container">
+  <main>
+    <div class="py-3 text-center">
+      <img class="d-block mx-auto py-2" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="tomblacklogo" width="72" height="57">
+      <h2>Your Training Menu</h2>
+      <p class="lead">Making Efforts every day will surely produce results.</p>
+    </div>
+
+      <div class="col-md-12">
+        <h2 class="mb-3 text-center">〜 Training Menu Details 〜</h2>
+          <div class="row g-3">
+
+            <div class="col-12">
+              <h2>Category</h2>
+              <h4 th:text="${training.category}"></h4>
+            </div>
+            
+            <hr class="my-4">
+
+            <div class="col-12">
+              <h2>Title</h2>
+              <h4 th:text="${training.title}"></h4>
+            </div>
+            
+            <hr class="my-4">
+
+            <div class="col-12">
+              <h2>Contents</h2>
+              <h4 th:text="${training.description}"></h4>
+            </div>
+            
+          	<hr class="my-4">
+  </main>
+
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2021 TomBlack</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="#">Privacy</a></li>
+      <li class="list-inline-item"><a href="https://www.instagram.com/tomokiman9/">Instagram</a></li>
+      <li class="list-inline-item"><a href="https://tol-app.jp/s/sm88gnn7pe">Support</a></li>
+    </ul>
+  </footer>
+</div>
+
+</div><!-- <div class="menu-wrapper" layout:fragment="contents">の閉じタグ -->
+    
+</body>
+</html>

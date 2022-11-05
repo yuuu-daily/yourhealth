@@ -3,6 +3,7 @@ package com.example.yourhealth.controller;
 import java.math.BigDecimal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,10 +40,13 @@ public class UsersController {
         String name = form.getName();
         String email = form.getEmail();
         String password = form.getPassword();
-        String passwordConfirmation = form.getPasswordConfirmation();									
+        String passwordConfirmation = form.getPasswordConfirmation();
+        
+        BCryptPasswordEncoder bcpe = new BCryptPasswordEncoder();
+        String encodeedPassword = bcpe.encode(password);
 
         if (repository.findByUsername(email) != null) {
-            FieldError fieldError = new FieldError(result.getObjectName(), "email", "その E メールはすでに使用されています。");
+            FieldError fieldError = new FieldError(result.getObjectName(), "email", "そのEメールはすでに使用されています。");
             result.addError(fieldError);
         }
         if (result.hasErrors()) {
@@ -52,7 +56,7 @@ public class UsersController {
             return "users/new";
         }
 
-		User entity = new User(email, name, passwordEncoder.encode(password), new BigDecimal(0), "Not set", Authority.ROLE_USER);// (BigDecimal??)
+		User entity = new User(email, name, encodeedPassword, new BigDecimal(0), "Not set", Authority.ROLE_USER);// (BigDecimal??)
         repository.saveAndFlush(entity);
         
         model.addAttribute("hasMessage", true);

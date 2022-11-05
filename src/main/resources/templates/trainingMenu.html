@@ -10,9 +10,9 @@
   <div class="menu-index-wrapper text-center" layout:fragment="contents">
   <div class="container">
     <div class="row">
-    <h1 class="section-headline" th:text="${toptitle}"></h1>
+    <h1 class="section-headline mt-3 mb-5" th:text="${toptitle}"></h1>
 		<div class="col-md-4 mb-4" th:each="trainingMenu : ${trainingMenus}" th:object="${trainingMenu}" style="width: 20rem;">
-		<a href="#" class="card-link" style="text-decoration:none;">
+		<a th:href="@{/user/menu/{id}(id=${trainingMenu.id})}" class="card-link text-decoration-none">
 		<div class="card text-center">
 		  <div class="card-header">
 		    TomBlack
