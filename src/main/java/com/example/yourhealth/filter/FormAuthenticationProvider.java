@@ -40,18 +40,12 @@ public class FormAuthenticationProvider implements AuthenticationProvider {
             throw new AuthenticationCredentialsNotFoundException("ログイン情報が存在しません。");
         }
         
-        // Userの中のプロパティpasswordを入力されたパスワードと比較
-//        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//        if (! passwordEncoder.encode(password).equals(entity.getPassword())) {
-//        	throw new AuthenticationCredentialsNotFoundException("ログイン情報が存在しません。");
-//        }
-        
-        Long userId = entity.getUserId();
+//        Long userId = entity.getUserId();
 		// IDをキーにユーザー情報を取得
-    	User compUser = repository.findByUserId(userId);;
+//    	User compUser = repository.findByUserId(userId);;
     	BCryptPasswordEncoder bcpe = new BCryptPasswordEncoder();
     	// 入力されたパスワードとDBのパスワード(ハッシュ化済み)を比較
-    	if (! bcpe.matches(entity.getPassword(), compUser.getPassword())) {
+    	if (! bcpe.matches(password, entity.getPassword())) {
     		throw new AuthenticationCredentialsNotFoundException("ログイン情報が存在しません。");
     	}
 
