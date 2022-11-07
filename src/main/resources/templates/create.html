@@ -8,31 +8,38 @@
 <body>
 <div class="menu-index-wrapper" layout:fragment="contents">
 <div class="container">
-<div class="row justify-content-center">
     <!-- ここからお試し -->
-    <form th:action="@{/trainingMenu}" method="POST">
-      <div class="col-6">
-		  <div class="mb-3">
-		    <label for="category" class="form-label">カテゴリー</label>
-		    <input type="text" class="form-control" id="category" name="category" value="">
-		  </div>
-	  </div>
-	  <div class="col-6">
-		  <div class="mb-3">
-		    <label for="title" class="form-label">タイトル</label>
-		    <input type="text" class="form-control" id="title" name="title" value="">
-		  </div>
-	  </div>
-	  <div class="col-6">
-		  <div class="mb-3">
-		    <label for="description" class="form-label">メニュー内容</label>
-		    <textarea class="form-control" id="description" name="description" rows="3"></textarea>
-		  </div>
-	  </div>
-	  <button type="submit" class="btn btn-secondary">登録</button>
-	</form>
-    <!-- ここまで -->
+  <div class="py-5 text-center">
+    <h2>Training Menu 登録フォーム</h2>
+  </div>
+    <div class="col-md-8 offset-md-2 align-self-center">
+      <h4 class="mb-3">入力項目</h4>
+      <hr class="mb-4">
+      <form class="needs-validation">
+        <div class="mb-3">
+          <!-- <label for="username">Username</label> -->
+          <label class="mb-2" for="category">カテゴリー</label>
+          <input type="text" class="form-control" id="category" placeholder="カテゴリー" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="mb-2" for="title">タイトル</label>
+          <input type="text" class="form-control" id="title" placeholder="タイトル">
+        </div>
+
+        <div class="mb-3">
+          <label class="mb-2" for="contents">メニュー内容</label>
+          <textarea class="form-control" id="contents" placeholder="メニュー内容詳細" rows="8" maxlength="1000"　required style="resize: vertical;
+  width:800px; height:200px;"></textarea>
+        </div>
+
+        <button class="mb-5 btn btn-primary btn-lg btn-block" type="submit">登録</button>
+      </form>
+    </div>
+  </div>
 </div>
+
+    <!-- ここまで -->
 </div>
 </div>
 </body>

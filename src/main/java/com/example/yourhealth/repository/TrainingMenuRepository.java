@@ -15,6 +15,7 @@ public interface TrainingMenuRepository extends JpaRepository<TrainingMenu, Stri
     
     TrainingMenu findById(Long id);
 
+//	void deleteById(Long id);
 
 }
 

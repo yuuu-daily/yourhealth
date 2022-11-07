@@ -22,21 +22,14 @@
     <nav layout:replace="~{layouts/common :: nav}"></nav>
     
     <div layout:fragment="contents"></div>
-    <footer class="footer" th:if="${hasFooter}">
-      <div class="container">
-        <div class="row">
-	        <div class="foot-wrap">
-			    <h3><a th:href="@{/privacyPolicy}" href="/privacyPolicy">プライバシーポリシー</a></h3>
-		    </div>
-		    <div class="footer-right">
-			    <h3><a th:href="@{/contact}" href="/contact">お問い合わせ</a></h3>
-		    </div>
-	        <small class="cmark">©️copyright 2022
-	        <a href="#">Your health.</a>
-	        </small>
-            <div class="col-md-4" th:each="tag : ${tags}" th:utext="${tag}"></div>
-        </div>
-      </div>
+    <footer class="footer pt-3 text-muted text-center text-small bg-dark text-white">
+      <!--  <footer class="my-5 pt-5 text-muted text-center text-small th:if="${hasFooter}">-->
+	    <p class="mb-1 text-white">&copy; 2021 TomBlack</p>
+	    <ul class="list-inline pb-0 bg-dark text-white">
+	      <li class="list-inline-item"><a href="#"><img class="d-block mx-auto py-2" src="../../images/icons/lock@2x.png" alt="privacy" width="32" height="45"></a></li>
+	      <li class="list-inline-item"><a href="https://www.instagram.com/tomokiman9/"><img class="d-block mx-auto py-2" src="../../images/icons/Instagram_Glyph_Gradient_RGB.png" alt="instagramlogo" width="32" height="45"></a></li>
+	      <li class="list-inline-item"><a href="https://tol-app.jp/s/sm88gnn7pe"><img class="d-block mx-auto py-2" src="../../images/icons/bulb.png" alt="support" width="32" height="45"></a></li>
+	    </ul>
     </footer>
     
 <script src="/scripts/method-convert.js" th:src="@{/scripts/method-convert.js}"></script>

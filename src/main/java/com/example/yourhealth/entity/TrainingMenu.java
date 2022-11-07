@@ -67,5 +67,8 @@ public class TrainingMenu extends AbstractEntity implements Serializable {
 	public String getDescription() {
 		return description;
 	}
+	public void setDescription(String descrription) {
+		this.description = description;
+	}
 	
 }
