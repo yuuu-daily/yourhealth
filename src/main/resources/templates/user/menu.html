@@ -11,7 +11,7 @@
     <div class="container">
   <main>
     <div class="py-3 text-center">
-      <img class="d-block mx-auto py-2" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="tomblacklogo" width="72" height="57">
+      <img class="d-block mx-auto py-2" src="../../images/icons/bulb.png" alt="tomblacklogo" width="50" height="57">
       <h2>Your Training Menu</h2>
       <p class="lead">Making Efforts every day will surely produce results.</p>
     </div>
@@ -39,17 +39,19 @@
               <h4 th:text="${training.description}"></h4>
             </div>
             
-          	<hr class="my-4">
+          	<hr class="my-5">
+          	
+          	<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+          	  <form th:action="@{/user/menuEdit}" method="post">
+                   <input type="submit" class="btn btn-primary me-md-5 mb-5" name="edit" value="編集">
+                   <input type="hidden" name="id" th:value="${training.id}">
+               </form>
+			  <form th:action="@{/delete}" method="post">
+                   <input type="submit" class="btn btn-danger mb-5" name="delete" value="削除">
+                   <input type="hidden" name="id" th:value="${training.id}">
+               </form>
+			</div>
   </main>
-
-  <footer class="my-5 pt-5 text-muted text-center text-small">
-    <p class="mb-1">&copy; 2021 TomBlack</p>
-    <ul class="list-inline">
-      <li class="list-inline-item"><a href="#">Privacy</a></li>
-      <li class="list-inline-item"><a href="https://www.instagram.com/tomokiman9/">Instagram</a></li>
-      <li class="list-inline-item"><a href="https://tol-app.jp/s/sm88gnn7pe">Support</a></li>
-    </ul>
-  </footer>
 </div>
 
 </div><!-- <div class="menu-wrapper" layout:fragment="contents">の閉じタグ -->

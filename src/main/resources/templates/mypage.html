@@ -16,9 +16,10 @@
 				<label for="textarea" class="form-label">目的</label>
 			</div>
 			<div class="mb-8 m-2 text-center">
-  				<textarea class="form-control" id="textarea" rows="3" th:value="${purpose}" name="purpose"></textarea>
+  				<textarea class="form-control" id="textarea" rows="3" th:value="${purpose}" name="purpose" style="resize: vertical;
+  width:400px; height:200px;"></textarea>
 			</div>
-			<input type="submit" value="更新" class="btn w-100 btn-outline-dark" />
+			<input type="submit" value="更新" class="my-4 btn w-100 btn-outline-dark" />
 		</form>
 		<form th:action="@{/update-target-weight}" method="post">
 			

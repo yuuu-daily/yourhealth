@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th ="https://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultrq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/layout}">
+<head>
+<title>メニュー編集画面</title>
+</head>
+<body>
+<div class="menu-wrapper" layout:fragment="contents">
+  <div class="container">
+    <!-- ここからお試し -->
+     <div th:if="${validationError}" th:each="error : ${validationError}">
+      <label class="text-danger" th:text="${error}"></label>
+    </div>
+    
+  <div class="py-5 text-center">
+    <h2>Training Menu 編集フォーム</h2>
+  </div>
+  
+    <div class="col-md-8 offset-md-2 align-self-center">
+      <h4 class="mb-3">入力項目</h4>
+      <hr class="mb-4">
+      <form th:action="@{/user/update}" th:object="${trainingMenuUpdateRequest}" th:method="post">
+        <div class="mb-3">
+          <label class="mb-2" for="category">カテゴリー<span class="text-danger">※</span></label>
+          <input type="text" class="form-control" id="category" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="mb-2" for="title">タイトル<span class="text-danger">※</span></label>
+          <input type="text" class="form-control" id="title">
+        </div>
+
+        <div class="mb-3">
+          <label class="mb-2" for="contents">メニュー内容<span class="text-danger">※</span></label>
+          <textarea class="form-control" id="contents" rows="8" maxlength="1000"　required style="resize: vertical;
+  width:800px; height:200px;"></textarea>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+          <input type="submit" class="btn btn-info me-md-5 mb-5 text-light" name="update" value="更新">
+          <input type="hidden" name="id">
+          <a th:href="@{/trainingMenu}" class="btn btn-secondary ms-md-5 mb-5">キャンセル</a>
+        </div>
+      </form>
+    </div>
+</div><!-- <div class="container"> -->
+</div><!-- <div class="menu-wrapper" layout:fragment="contents">の閉じタグ -->
+</body>
+</html>
